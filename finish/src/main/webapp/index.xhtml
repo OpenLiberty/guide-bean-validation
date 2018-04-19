@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+        	xmlns:h="http://xmlns.jcp.org/jsf/html"
+        	xmlns:f="http://xmlns.jcp.org/jsf/core" >
+
+    <h:head>
+        <title>Spacecraft</title>
+    </h:head>
+    <f:view>
+        <h:body>
+        <h1>Spacecraft Form</h1>
+        <h:form>
+        <b>Astronaut</b> <br />
+        Name (must not be blank): <h:inputText id="name" value="#{astronaut.name}" label="Name"></h:inputText><h:message for="name" /> <!-- The "h:message" displays the error message for the indicated component id, which is specified with the "for" attribute.  To display all error messages the h:messages tag can be used.-->
+        <br />
+        Age (must be between 18 and 100): <h:inputText id="age" value="#{astronaut.age}" label="Age"></h:inputText><h:message for="age" />
+        <br />
+        Email Address (must be correctly formatted): <h:inputText id="emailAddress" value="#{astronaut.emailAddress}" label="Email Address"></h:inputText><h:message for="emailAddress" />
+        <br />
+        <br />
+        <b>Spacecraft</b> <br />
+        Serial Number (must be "Liberty" followed by 4 integers): <h:inputText id="serialNumber" value="#{spacecraft.serialNumber}" label="Serial Number"></h:inputText><h:message for="serialNumber" />
+        <br />
+        <br />
+        <h:commandButton id="Validate" action="submit"/>
+        </h:form>
+        </h:body>
+    </f:view>
+</html>
