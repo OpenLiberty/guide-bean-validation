@@ -186,7 +186,7 @@ The first test will test that no constraint violations are found when the correc
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoFieldLevelConstraintViolations]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoFieldLevelConstraintViolations]
 ----
 
 The data supplied to the beans in this test should pass all the previously defined constraints, so no constraint violations are expected.
@@ -195,7 +195,7 @@ The second test is much like the first, except data violating some of the constr
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoFieldLevelConstraintViolations]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoFieldLevelConstraintViolations]
 ----
 
 Since there are 3 constraint violations, there are three `ConstraintViolation` objects returned as a set from the call to `validate`.  The 3 expected messages are "must be greater than 0" for the negative distance specified in the destination map, "must be a well-formed email address" for the incorrect email address, and the custom "Serial number is not valid" message for the serial number.
@@ -204,7 +204,7 @@ The third test verifies the method level constraints specified on the `launchSpa
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoMethodLevelConstraintViolations]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testNoMethodLevelConstraintViolations]
 ----
 
 In this test, the call to launchSpacecraft is made with the argument `OpenLiberty`, which results in `true` being retuned, which passes the specified constraint.
@@ -213,7 +213,7 @@ The fourth test validates that a `ConstraintViolationException` is thrown when o
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testMethodLevelConstraintViolation]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=testMethodLevelConstraintViolation]
 ----
 
 A call is made to the `launchSpacecraft` method of the spacecraft bean with an incorrect parameter, in this case "incorrectCode". Since this results in the method returning false, which violates the defined constraint, a `ConstraintViolationException` is thrown. The exception should include the constraint violation message, which in this case should include `must be true`.
