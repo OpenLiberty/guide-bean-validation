@@ -29,7 +29,7 @@ import javax.validation.Valid;
 @RequestScoped
 public class Spacecraft implements Serializable {
 
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @Valid
     private Astronaut astronaut;
