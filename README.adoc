@@ -35,15 +35,16 @@ or via integration with other specifications and frameworks, such as CDI, JPA, o
 on data, apply constraints using annotations or XML configuration files. Bean Validation
 provides both built-in constraints and the ability to create custom constraints. Bean Validation 
 allows for validation of both a JavaBean's fields or methods. For method-level validation, both the 
-input parameters and return value can be validated. The application written in this guide will use 
-both field and method level validation, utilizing several of the built-in constraints and a custom 
-constraint.
+input parameters and return value can be validated.
 
 === What's new in Bean Validation 2.0
 
 Several new built-in constraints were added in Bean Validation 2.0, including `@Email`,
 `@NotBlank`, `@Past`, and `@Negative`. Additionally, constraints can now be specified on type 
 parameters.
+
+The application written in this guide will use both field and method level validation, utilizing 
+several of the built-in constraints and a custom constraint.
 
 // =================================================================================================
 // Getting Started
