@@ -173,7 +173,7 @@ Serial Number: Serial number is not valid.
 
 The form was created using JSF, which has built-in integration with Bean Validation.
 
-include::{common-includes}/mvnpackage.adoc[]
+include::{common-includes}/mvncompile.adoc[]
 
 // =================================================================================================
 // Testing the Constraints
