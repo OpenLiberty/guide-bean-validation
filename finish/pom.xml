@@ -95,7 +95,7 @@
                 <configuration>
                     <!-- TODO switch from daily driver to release containing beanValidation-2.0 before release-->
                     <install>
-                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/2018-05-18_1417/openliberty-all-20180518-1300.zip</runtimeUrl>
+                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/2018-06-01_0659/openliberty-all-20180601-0500.zip</runtimeUrl>
                     </install>
                     <!--assemblyArtifact>
                          <groupId>io.openliberty</groupId>
