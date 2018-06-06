@@ -25,7 +25,7 @@ import javax.enterprise.context.RequestScoped;
 @RequestScoped
 public class Astronaut implements Serializable {
 
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     @NotBlank
     private String name;
