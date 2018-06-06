@@ -27,10 +27,9 @@ public class BeanValidationTest {
     @BeforeClass
         public static void oneTimeSetup() {
         port = System.getProperty("liberty.test.port");
-        targetUrl = "http://localhost:" + port + "/LibertyProject/servlet";
+        targetUrl = "http://localhost:" + port + "/Spacecraft/servlet";
     }
 
-    // tag::testNoFieldLevelConstraintViolations[]
     @Test
     public void testNoFieldLevelConstraintViolations() throws Exception {
         String validationType = "FieldLevelValidation";
@@ -48,9 +47,7 @@ public class BeanValidationTest {
         String response = testBufferHelper(con);
         assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("No constraint violations found."));
     }
-    // end::testNoFieldLevelConstraintViolations[]
 
-    // tag::testFieldLevelConstraintViolation[]
     @Test
     public void testFieldLevelConstraintViolation() throws Exception {
         String validationType = "FieldLevelValidation";
@@ -70,9 +67,7 @@ public class BeanValidationTest {
         assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("must be a well-formed email address"));
         assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("Serial number is not valid"));
     }
-    // end::testFieldLevelConstraintViolation[]
 
-    // tag::testNoMethodLevelConstraintViolations[]
     @Test
     public void testNoMethodLevelConstraintViolations() throws Exception {
         String validationType = "MethodLevelValidation";
@@ -83,9 +78,7 @@ public class BeanValidationTest {
         String response = testBufferHelper(con);
         assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("No constraint violations found."));
     }
-    // end::testNoMethodLevelConstraintViolations[]
 
-    // tag::testMethodLevelConstraintViolation[]
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
         String validationType = "MethodLevelValidation";
@@ -96,7 +89,6 @@ public class BeanValidationTest {
         String response = testBufferHelper(con);
         assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("must be true"));
     }
-    // end::testMethodLevelConstraintViolation[]
 
     private HttpURLConnection testRequestHelper(String url) throws Exception {
         URL obj = new URL(url);
