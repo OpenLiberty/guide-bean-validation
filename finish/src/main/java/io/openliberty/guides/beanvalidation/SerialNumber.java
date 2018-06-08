@@ -28,7 +28,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = { SerialNumberValidator.class })
 public @interface SerialNumber {
 
-    String message() default "Serial number is not valid.";
+    String message() default "serial number is not valid.";
 
     Class<?>[] groups() default {};
 
