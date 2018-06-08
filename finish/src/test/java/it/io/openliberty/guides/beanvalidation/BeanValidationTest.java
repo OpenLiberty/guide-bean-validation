@@ -73,7 +73,7 @@ public class BeanValidationTest {
         assertTrue("Incorrect response from " + url + ". Response: " + response,
                    response.contains("must be a well-formed email address"));
         assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("Serial number is not valid"));
+                   response.contains("serial number is not valid"));
     }
 
     @Test
