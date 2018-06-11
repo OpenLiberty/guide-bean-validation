@@ -9,9 +9,10 @@
 :projectid: bean-validation
 :page-duration: 20 minutes
 :page-releasedate: 2018-02-05
-:page-description: Learn how to get started with Bean Validation and Open Liberty.
-:page-tags: ['Java', 'Getting Started']
+:page-description: Learn how to validate JavaBeans using Bean Validation and Open Liberty.
+:page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', `@Email`, '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint']
 :page-permalink: /guides/{projectid}
+:page-related-guides: ['guide-cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 = Creating an application with Bean Validation
 
@@ -24,7 +25,7 @@ You'll explore how to create an application to validate data using Bean Validati
 
 You will learn the basics of writing an application that uses Bean Validation, the new
 functionality in Bean Validation 2.0, and how to test an application that uses Bean Validation. The
-application will allow you to validate data from a form or servlet request using Bean Validation to 
+application will allow you to validate data from a form or servlet request using Bean Validation to
 ensure that it meets the defined constraints.
 
 === What is Bean validation
@@ -33,17 +34,17 @@ Bean Validation is a Java specification allowing data stored in JavaBeans to be 
 standard way, simplifying validating data and error checking. Validation can be performed manually
 or via integration with other specifications and frameworks, such as CDI, JPA, or JSF. To set rules
 on data, apply constraints using annotations or XML configuration files. Bean Validation
-provides both built-in constraints and the ability to create custom constraints. Bean Validation 
-allows for validation of both a JavaBean's fields or methods. For method-level validation, both the 
+provides both built-in constraints and the ability to create custom constraints. Bean Validation
+allows for validation of both a JavaBean's fields or methods. For method-level validation, both the
 input parameters and return value can be validated.
 
 === What's new in Bean Validation 2.0
 
 Several new built-in constraints were added in Bean Validation 2.0, including `@Email`,
-`@NotBlank`, `@Past`, and `@Negative`. Additionally, constraints can now be specified on type 
+`@NotBlank`, `@Past`, and `@Negative`. Additionally, constraints can now be specified on type
 parameters.
 
-The application written in this guide will use both field and method level validation, utilizing 
+The application written in this guide will use both field and method level validation, utilizing
 several of the built-in constraints and a custom constraint.
 
 // =================================================================================================
@@ -86,8 +87,8 @@ Now, navigate back to the `start` directory to begin.
 // =================================================================================================
 == Applying Constraints on the JavaBeans
 
-First, the JavaBeans that will be constrained need to be created. Create the Astronaut bean class
-in the  `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java` file:
+First, the JavaBeans that will be constrained need to be created. Create the `Astronaut` bean class
+in the `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java` file:
 
 [source,java]
 ----
@@ -96,54 +97,54 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 
 The bean stores the following attributes of an Astronaut: `name`, `age`, and `emailAddress`, along
 with providing getters and setters to access and set the values. The JavaBean will need to be a CDI
-managed bean to allow for JSF integration so a scope is necessary, in this case using a request 
-scope.
+managed bean to allow for JSF integration so a scope is necessary, in this case using a request
+scope. To learn more about CDI see https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
 
 Apply the following constraints:
 
 * It is required for the astronaut to have a name. Bean Validation 2.0 provides a built-in
-constraint, `@NotBlank`, which ensures the value is not null and contains one non-whitespace 
+constraint, `@NotBlank`, which ensures the value is not null and contains one non-whitespace
 character. Apply the annotation to the `name` field.
 
-* It is required that the email supplied is a valid email address. Another new built-in constraint 
-in Bean Validation 2.0 is `@Email`, which can be used to validate that the user supplied the 
+* It is required that the email supplied is a valid email address. Another new built-in constraint
+in Bean Validation 2.0 is `@Email`, which can be used to validate that the user supplied the
 `Astronaut` bean a correctly formatted email address. Apply the annotation to the `email` field.
 
-* It is required that the astronaut be between the ages of 18 and 100. Bean Validation allows for 
-multiple constraints to be specified on a single field. Ensure that the astronaut is between the 
+* It is required that the astronaut be between the ages of 18 and 100. Bean Validation allows for
+multiple constraints to be specified on a single field. Ensure that the astronaut is between the
 ages of 18 and 100 using the built-in constraints `@Min` and `@Max` on the `age` field.
 
-In this example, place the annotation on the field value itself. You can also place the annotation 
+In this example, place the annotation on the field value itself. You can also place the annotation
 on the getter method, which has the same effect.
 
-Create another class to represent a spacecraft in the 
-src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java file:
+Create another class to represent a spacecraft in the
+`src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java` file:
 
 [source,java]
 ----
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
 ----
 
-The `Spacecraft` bean also contains three fields: `astronaut`, `serialNumber`, and `destination`. 
+The `Spacecraft` bean also contains three fields: `astronaut`, `serialNumber`, and `destination`.
 The JavaBean will need to be a CDI managed bean to allow for JSF integration so a scope needs to be
 specified, in this case using a request scope. Another reason this needs to be a CDI managed bean is
 that method-level validation will be used on this JavaBean, which utilizes CDI interceptors.
 
 Apply the following constraints:
 
-* It is required that every destination specified has a name and a positive distance. New in Bean 
-Validation 2.0, you can specify constraints on type parameters. Constrain the `destination` map so 
-that the destination name is not blank and the distance is positive, using the `@NotBlank` and 
-`@Positive` constraints. The positive constraint can be used to ensure that numeric value fields 
+* It is required that every destination specified has a name and a positive distance. New in Bean
+Validation 2.0, you can specify constraints on type parameters. Constrain the `destination` map so
+that the destination name is not blank and the distance is positive, using the `@NotBlank` and
+`@Positive` constraints. The positive constraint can be used to ensure that numeric value fields
 are greater than 0.
 
-* It is required that the user supply a correctly formatted serial number. In addition to 
-specifying the built-in constraints, you can create custom constraints to allow for user-defined 
+* It is required that the user supply a correctly formatted serial number. In addition to
+specifying the built-in constraints, you can create custom constraints to allow for user-defined
 validation rules. The `@SerialNumber` constraint applied to the `serialNumber` field
 is a custom constraint, which will be created later.
 
 Since you already specified constraints on the `Astronaut` bean, the constraints do not need to
-be respecified in the `Spacecraft` bean. Instead, by applying the `@Valid` annotation to the field, 
+be respecified in the `Spacecraft` bean. Instead, by applying the `@Valid` annotation to the field,
 all the nested constraints on the `Astronaut` are validated.
 
 Bean Validation can also be used with CDI to provide method-level validation. The method
@@ -152,7 +153,7 @@ Bean Validation can also be used with CDI to provide method-level validation. Th
 The `launchSpacecraft` method utilizes both parameter and return value validation. The `@NotNull`
 on the parameter `launchCode` is used to validate that the parameter is not null before executing
 the method, eliminating the need to manually check the parameter within the method. Additionally,
-the method has a return level constraint `@AssertTrue`, to enforce that the method must return the 
+the method has a return level constraint `@AssertTrue`, to enforce that the method must return the
 boolean `true`.
 
 // =================================================================================================
@@ -188,8 +189,8 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberV
 ----
 
 The `SerialNumberValidator` class has one method, `isValid()`, which contains the custom
-validation logic. In this case, the serial number must start with "Liberty" followed by four 
-numbers, for example `Liberty0002`. If the supplied serial number matches the constraint,
+validation logic. In this case, the serial number must start with "Liberty" followed by four
+numbers, for example `Liberty0001`. If the supplied serial number matches the constraint,
 `isValid` returns `true`, else it returns `false`.
 
 // =================================================================================================
@@ -213,12 +214,12 @@ is injected so that the method-level constraints can be validated.
 
 The programmatic validation takes place in the `processInputData` method. First, the `Spacecraft`
 and `Astronaut` beans are populated with the supplied data using the standard setters. To validate
-the data, the `validate` method is called on the `Spacecraft` bean. Since the `Spacecraft` bean 
-contains `@Valid` on the `Astronaut` bean, both JavaBeans will be validated. Any constraint 
-violations found during the call to the `validate` method are returned as a set of 
+the data, the `validate` method is called on the `Spacecraft` bean. Since the `Spacecraft` bean
+contains `@Valid` on the `Astronaut` bean, both JavaBeans will be validated. Any constraint
+violations found during the call to the `validate` method are returned as a set of
 `ConstraintViolation` objects.
 
-A call is then made to the `launchSpacecraft` method, which will throw a 
+A call is then made to the `launchSpacecraft` method, which will throw a
 `ConstraintViolationException` if either of the method-level constraints are violated.
 
 // =================================================================================================
@@ -238,7 +239,7 @@ Email = libbybot@openliberty.io
 SerialNumber = Liberty0001
 ----
 
-After clicking the submit button, you will not see any changes since there are no constraint 
+After clicking the `Submit` button, you will not see any changes since there are no constraint
 violations. Now try the following values, all of which break the previously defined constraints:
 
 [source, role="no_copy"]
@@ -256,7 +257,7 @@ After clicking submit, the constraint violation messages are displayed:
 Name: must not be blank
 Age: must be greater than or equal to 18
 Email Address: must be a well-formed email address
-Serial Number: Serial number is not valid.
+Serial Number: serial number is not valid.
 ----
 
 The form was created using JSF, which has built-in integration with Bean Validation.
@@ -283,16 +284,15 @@ base URL string that is used throughout the tests.
 
 See the following descriptions of the test cases:
 
-* `testNoFieldLevelConstraintViolations` verifies that when data is supplied to the `Astronaut` and 
-`Spacecraft` beans' attributes that passes the constraints no constraint violations are found.
+* `testNoFieldLevelConstraintViolations` verifies that no constraint violations occur when data is
+supplied to the `Astronaut` and `Spacecraft` beans' attributes that passes the defined constraints.
 
-* `testFieldLevelConstraintViolation` verifies that when data is supplied supplied to the 
-`Astronaut` and `Spacecraft` attributes that violates the constraints the appropriate constraint 
-violations are found. Since there are 3 constraint violations, three `ConstraintViolation` objects 
-are returned as a set from the call to `validate`. The 3 expected messages are `must be greater 
-than 0` for the negative distance specified in the destination map, `must be a well-formed email 
-address` for the incorrect email address, and the custom `Serial number is not valid` message for 
-the serial number.
+* `testFieldLevelConstraintViolation` verifies that the appropriate constraint violations occur
+when data supplied to the `Astronaut` and `Spacecraft` attributes violates the defined constraints.
+Since there are 3 constraint violations, three `ConstraintViolation` objects are returned as a set
+from the call to `validate`. The 3 expected messages are `must be greater than 0` for the negative
+distance specified in the destination map, `must be a well-formed email address` for the incorrect
+email address, and the custom `serial number is not valid` message for the serial number.
 
 * `testNoMethodLevelConstraintViolations` verifies that the method-level constraints specified on
 the `launchSpacecraft` method of the `Spacecraft` bean are validated when the method is called with

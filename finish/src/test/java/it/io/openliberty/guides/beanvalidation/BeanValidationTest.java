@@ -1,3 +1,4 @@
+// tag::copyright[]
 /*******************************************************************************
  * Copyright (c) 2018 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
@@ -8,6 +9,7 @@
  * Contributors:
  *     IBM Corporation - Initial implementation
  *******************************************************************************/
+ // end::copyright[]
 package it.io.openliberty.guides.beanvalidation;
 
 import org.junit.Test;
@@ -39,13 +41,15 @@ public class BeanValidationTest {
         String name = "Libby";
         String serialNumber = "Liberty1001";
 
-        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" + destinations +
-                                      "&age=" + age + "&emailAddress=" + emailAddress + "&name=" + name +
-                                      "&serialNumber=" + serialNumber);
+        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" +
+                                      destinations + "&age=" + age + "&emailAddress=" +
+                                      emailAddress + "&name=" + name +"&serialNumber=" +
+                                      serialNumber);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("No constraint violations found."));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("No constraint violations found."));
     }
 
     @Test
@@ -57,37 +61,45 @@ public class BeanValidationTest {
         String name = "Libby";
         String serialNumber = "Liberty123";
 
-        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" + destinations +
-                                      "&age=" + age + "&emailAddress=" + emailAddress + "&name=" + name +
-                                      "&serialNumber=" + serialNumber);
+        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" +
+                                      destinations + "&age=" + age + "&emailAddress=" +
+                                      emailAddress + "&name=" + name + "&serialNumber=" +
+                                      serialNumber);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("must be greater than 0"));
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("must be a well-formed email address"));
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("Serial number is not valid"));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("must be greater than 0"));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("must be a well-formed email address"));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("serial number is not valid"));
     }
 
     @Test
     public void testNoMethodLevelConstraintViolations() throws Exception {
         String validationType = "MethodLevelValidation";
         String launchCode = "OpenLiberty";
-        String url = targetUrl.concat("?validationType="+ validationType + "&launchCode=" + launchCode);
+        String url = targetUrl.concat("?validationType="+ validationType +
+                                      "&launchCode=" + launchCode);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("No constraint violations found."));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("No constraint violations found."));
     }
 
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
         String validationType = "MethodLevelValidation";
         String launchCode = "incorrectCode";
-        String url = targetUrl.concat("?validationType="+ validationType + "&launchCode=" + launchCode);
+        String url = targetUrl.concat("?validationType="+ validationType +
+                                      "&launchCode=" + launchCode);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response, response.contains("must be true"));
+        assertTrue("Incorrect response from " + url + ". Response: " + response,
+                   response.contains("must be true"));
     }
 
     private HttpURLConnection testRequestHelper(String url) throws Exception {
