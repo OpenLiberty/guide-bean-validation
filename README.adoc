@@ -69,8 +69,8 @@ mvn liberty:start-server
 Point your browser to the `http://localhost:9080/Spacecraft` URL. You see a web form for
 filling in information about an astronaut and spacecraft. The form accepts an astronaut name
 that cannot be blank, an age that must be between 18 and 100, and a correctly formatted email
-address. The form also accepts a serial number for the spacecraft that consists of `Liberty` followed by 4
-integers. Input data that meets and violates the constraints. When the data is valid,
+address. The form also accepts a spacecraft serial number that consists of `Liberty` followed by 4
+integers. Enter data that meets and violates the constraints. When the data is valid,
 no errors appear on the screen, but when data is invalid, a message appears that details why the data is invalid.
 
 When you are done, stop the Open Liberty server.
@@ -123,7 +123,7 @@ Create another class to represent a spacecraft in the
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
 ----
 
-The `Spacecraft` bean contains three fields, `astronaut`, `serialNumber`, and `destination`.
+The `Spacecraft` bean contains 3 fields, `astronaut`, `serialNumber`, and `destination`.
 The JavaBean needs to be a CDI managed bean to allow for JSF integration. A scope is necessary, as shown by the request
 scope used in the example.
 You also use method-level validation on this JavaBean, and method-level validation uses CDI interceptors.
@@ -189,7 +189,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberV
 ----
 
 The `SerialNumberValidator` class has one method, `isValid()`, which contains the custom
-validation logic. In this case, the serial number must start with `Liberty` followed by four
+validation logic. In this case, the serial number must start with `Liberty` followed by 4
 numbers, such as `Liberty0001`. If the supplied serial number matches the constraint,
 `isValid` returns `true`. If the serial number does not match, it returns `false`.
 
@@ -238,8 +238,8 @@ Email = libbybot@openliberty.io
 SerialNumber = Liberty0001
 ----
 
-After you click the `Submit` button, you don't see any changes because no constraint
-violations appear. Next, enter the following values, all of which break the previously defined constraints:
+After you click the `Submit` button, you won't see any changes because constraint
+violations didn't appear. Next, enter the following values, all of which break the previously defined constraints:
 
 [source, role="no_copy"]
 ----
@@ -285,8 +285,8 @@ supplied to the `Astronaut` and `Spacecraft` bean attributes.
 
 * The `testFieldLevelConstraintViolation` test case verifies that the appropriate constraint violations occur
 when data that is supplied to the `Astronaut` and `Spacecraft` attributes violates the defined constraints.
-Because three constraint violations are defined, three `ConstraintViolation` objects are returned as a set
-from the `validate` call. The three expected messages are `must be greater than 0` for the negative
+Because 3 constraint violations are defined, 3 `ConstraintViolation` objects are returned as a set
+from the `validate` call. The 3 expected messages are `must be greater than 0` for the negative
 distance specified in the destination map, `must be a well-formed email address` for the incorrect
 email address, and the custom `serial number is not valid` message for the serial number.
 
