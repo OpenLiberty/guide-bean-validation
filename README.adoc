@@ -69,7 +69,7 @@ mvn liberty:start-server
 Point your browser to the `http://localhost:9080/Spacecraft` URL. You see a web form for
 filling in information about an astronaut and spacecraft. The form accepts an astronaut name
 that cannot be blank, an age that must be between 18 and 100, and a correctly formatted email
-address. The form also accepts a serial number for the spacecraft that consists of "Liberty" followed by 4
+address. The form also accepts a serial number for the spacecraft that consists of `Liberty` followed by 4
 integers. Input data that meets and violates the constraints. When the data is valid,
 no errors appear on the screen, but when data is invalid, a message appears that details why the data is invalid.
 
@@ -189,7 +189,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberV
 ----
 
 The `SerialNumberValidator` class has one method, `isValid()`, which contains the custom
-validation logic. In this case, the serial number must start with "Liberty" followed by four
+validation logic. In this case, the serial number must start with `Liberty` followed by four
 numbers, such as `Liberty0001`. If the supplied serial number matches the constraint,
 `isValid` returns `true`. If the serial number does not match, it returns `false`.
 
