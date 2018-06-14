@@ -277,33 +277,28 @@ file:
 include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=**;!copyright]
 ----
 
-Place the `@BeforeClass` annotation on a method that runs before any of the test cases. In this
-case, the `oneTimeSetup` method retrieves the port number for the Open Liberty server and builds a
-base URL string that is used throughout the tests.
+Place the `@BeforeClass` annotation on a method that runs before any of the test cases. The `oneTimeSetup` method retrieves the port number for the Open Liberty server and builds a
+base URL string that is used throughout the tests, which are described as follows:
 
-See the following descriptions of the test cases:
+* The `testNoFieldLevelConstraintViolations` test case verifies that no constraint violations occur when data is
+supplied to the `Astronaut` and `Spacecraft` bean attributes.
 
-* `testNoFieldLevelConstraintViolations` verifies that no constraint violations occur when data is
-supplied to the `Astronaut` and `Spacecraft` beans' attributes that passes the defined constraints.
-
-* `testFieldLevelConstraintViolation` verifies that the appropriate constraint violations occur
-when data supplied to the `Astronaut` and `Spacecraft` attributes violates the defined constraints.
-Since there are 3 constraint violations, three `ConstraintViolation` objects are returned as a set
-from the call to `validate`. The 3 expected messages are `must be greater than 0` for the negative
+* The `testFieldLevelConstraintViolation` test case verifies that the appropriate constraint violations occur
+when data that is supplied to the `Astronaut` and `Spacecraft` attributes violates the defined constraints.
+Because three constraint violations are defined, three `ConstraintViolation` objects are returned as a set
+from the `validate` call. The three expected messages are `must be greater than 0` for the negative
 distance specified in the destination map, `must be a well-formed email address` for the incorrect
 email address, and the custom `serial number is not valid` message for the serial number.
 
-* `testNoMethodLevelConstraintViolations` verifies that the method-level constraints specified on
+* The `testNoMethodLevelConstraintViolations` test case verifies that the method-level constraints that are specified on
 the `launchSpacecraft` method of the `Spacecraft` bean are validated when the method is called with
-no violations. In this test, the call to launchSpacecraft is made with the argument `OpenLiberty`,
-which results in `true` being retuned, which passes the specified constraints.
+no violations. In this test, the call to the `launchSpacecraft` method is made with the `OpenLiberty` argument.
+A value of `true` is retuned, which passes the specified constraints.
 
-* `testMethodLevelConstraintViolation` verifies that a `ConstraintViolationException` is thrown
-when one of the method-level constraints is violated. A call is made to the `launchSpacecraft`
-method of the spacecraft bean with an incorrect parameter, in this case `incorrectCode`. Since this
-results in the method returning false, which violates the defined constraint, a
-`ConstraintViolationException` is thrown. The exception should include the constraint violation
-message, which in this case includes `must be true`.
+* The `testMethodLevelConstraintViolation` test case verifies that a `ConstraintViolationException` exception is thrown
+when one of the method-level constraints is violated. A call with an incorrect parameter, such as `incorrectCode`, is made to the `launchSpacecraft` method of the `Spacecraft` bean. The method returns `false`, which violates the defined constraint, and a
+`ConstraintViolationException` exception is thrown. The exception includes the constraint violation
+message, which is `must be true` in this example.
 
 include::{common-includes}/mvnverify.adoc[]
 
@@ -323,6 +318,6 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 == Great work! You're done!
 
-You developed and tested a Java application utilizing Bean Validation 2.0 and Open Liberty.
+You developed and tested a Java application by using Bean Validation 2.0 and Open Liberty.
 
 include::{common-includes}/finish.adoc[]
