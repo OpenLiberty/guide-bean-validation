@@ -16,7 +16,7 @@
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 = Creating an application with Bean Validation
 
-You'll explore how to create an application to validate data using Bean Validation in Open Liberty.
+You'll explore how to use Bean Validation in Open Liberty to create an application to validate data.
 
 // =================================================================================================
 // What you'll learn
