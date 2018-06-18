@@ -39,9 +39,8 @@ both the input parameters and return value can be validated.
 
 === What's new in Bean Validation 2.0
 
-Several built-in constraints are included in Bean Validation 2.0, such as `@Email`,
-`@NotBlank`, `@Past`, and `@Negative`. You can also specify constraints on type
-parameters.
+Several built-in constraints are included in Bean Validation 2.0, such as `@Email`, `@NotBlank`,
+`@Positive`, and `@Negative`. You can also specify constraints on type parameters.
 
 The example application uses both field-level and method-level validation as well as
 several of the built-in constraints and a custom constraint.
