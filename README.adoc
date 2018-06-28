@@ -10,9 +10,9 @@
 :page-duration: 20 minutes
 :page-releasedate: 2018-02-05
 :page-description: Learn how to validate JavaBeans using Bean Validation and Open Liberty.
-:page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', `@Email`, '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint']
+:page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', '@Email', '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint']
 :page-permalink: /guides/{projectid}
-:page-related-guides: ['guide-cdi-intro']
+:page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 = Creating an application with Bean Validation
 
@@ -28,8 +28,6 @@ You will learn the basics of writing and testing an application that uses Bean
 Validation and the new functionality of Bean Validation 2.0. The application 
 uses Bean Validation to validate data from a form or servlet request and to 
 ensure that the request meets the defined constraints.
-
-=== What is Bean Validation?
 
 Bean Validation is a Java specification that simplifies data validation and error 
 checking. Bean Validation uses a standard way to validate data stored in 

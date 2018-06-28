@@ -41,7 +41,8 @@ public class ValidatingServlet extends HttpServlet {
     @Inject
     Spacecraft bean;
 
-    public void processInputData(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void processInputData(HttpServletRequest request,
+                HttpServletResponse response) throws ServletException, IOException {
 
         String validationType = request.getParameter("validationType");
         if(validationType.equalsIgnoreCase("FieldLevelValidation")) {
@@ -52,13 +53,15 @@ public class ValidatingServlet extends HttpServlet {
             astronaut.setEmailAddress(request.getParameter("emailAddress"));
             astronaut.setName(request.getParameter("name"));
 
-            HashMap<String, Integer> destinations = createDestinationsMap(request.getParameter("destinations"));
+            HashMap<String, Integer> destinations
+                    = createDestinationsMap(request.getParameter("destinations"));
 
             spacecraft.setDestinations(destinations);
             spacecraft.setAstronaut(astronaut);
             spacecraft.setSerialNumber(request.getParameter("serialNumber"));
 
-            Set<ConstraintViolation<Spacecraft>> violations = validator.validate(spacecraft);
+            Set<ConstraintViolation<Spacecraft>> violations
+                    = validator.validate(spacecraft);
             PrintWriter out = response.getWriter();
             if (!violations.isEmpty()) {
                 for (ConstraintViolation<Spacecraft> violation : violations) {
@@ -80,11 +83,13 @@ public class ValidatingServlet extends HttpServlet {
         }
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+                         throws ServletException, IOException {
         processInputData(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+                          throws ServletException, IOException {
         processInputData(request, response);
     }
 

@@ -41,10 +41,10 @@ public class BeanValidationTest {
         String name = "Libby";
         String serialNumber = "Liberty1001";
 
-        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" +
-                                      destinations + "&age=" + age + "&emailAddress=" +
-                                      emailAddress + "&name=" + name +"&serialNumber=" +
-                                      serialNumber);
+        String url = targetUrl.concat("?validationType="+ validationType +
+                                      "&destinations=" + destinations + "&age=" + age +
+                                      "&emailAddress=" + emailAddress + "&name=" + 
+                                      name +"&serialNumber=" + serialNumber);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
@@ -61,10 +61,10 @@ public class BeanValidationTest {
         String name = "Libby";
         String serialNumber = "Liberty123";
 
-        String url = targetUrl.concat("?validationType="+ validationType + "&destinations=" +
-                                      destinations + "&age=" + age + "&emailAddress=" +
-                                      emailAddress + "&name=" + name + "&serialNumber=" +
-                                      serialNumber);
+        String url = targetUrl.concat("?validationType="+ validationType +
+                                      "&destinations=" + destinations + "&age=" + age +
+                                      "&emailAddress=" + emailAddress + "&name=" +
+                                      name + "&serialNumber=" + serialNumber);
         HttpURLConnection con = testRequestHelper(url);
         assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
         String response = testBufferHelper(con);
@@ -109,7 +109,8 @@ public class BeanValidationTest {
     }
 
     private String testBufferHelper(HttpURLConnection con) throws Exception {
-        BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        BufferedReader in
+                = new BufferedReader(new InputStreamReader(con.getInputStream()));
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in.readLine()) != null) {
