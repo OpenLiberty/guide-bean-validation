@@ -16,6 +16,9 @@
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
 = Creating an application with Bean Validation
 
+[.hidden]
+NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
+
 You'll explore how to use Bean Validation in Open Liberty to create an application to 
 validate data.
 
