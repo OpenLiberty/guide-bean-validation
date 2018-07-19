@@ -13,110 +13,139 @@
 package it.io.openliberty.guides.beanvalidation;
 
 import org.junit.Test;
+
+import io.openliberty.guides.beanvalidation.Astronaut;
+import io.openliberty.guides.beanvalidation.Spacecraft;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import java.net.URL;
-import java.net.HttpURLConnection;
-import org.junit.BeforeClass;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.HashMap;
+
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.junit.After;
+import org.junit.Before;
 
 public class BeanValidationTest {
 
-    private static String port;
-    private static String targetUrl;
+	private Client client;
+	private static String port;
 
-    @BeforeClass
-        public static void oneTimeSetup() {
+
+    @Before
+    public void setup() {
+    	client = ClientBuilder.newClient();
         port = System.getProperty("liberty.test.port");
-        targetUrl = "http://localhost:" + port + "/Spacecraft/servlet";
+    }
+    
+    @After
+    public void teardown() {
+        client.close();
     }
 
     @Test
     public void testNoFieldLevelConstraintViolations() throws Exception {
-        String validationType = "FieldLevelValidation";
-        String destinations = "Mars,1500,Pluto,10000";
-        String age = "25";
-        String emailAddress = "libby@openliberty.io";
-        String name = "Libby";
-        String serialNumber = "Liberty1001";
-
-        String url = targetUrl.concat("?validationType="+ validationType +
-                                      "&destinations=" + destinations + "&age=" + age +
-                                      "&emailAddress=" + emailAddress + "&name=" + 
-                                      name +"&serialNumber=" + serialNumber);
-        HttpURLConnection con = testRequestHelper(url);
-        assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
-        String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("No constraint violations found."));
+        Astronaut astronaut = new Astronaut();
+        astronaut.setAge(25);
+        astronaut.setEmailAddress("libby@openliberty.io");
+        astronaut.setName("Libby");
+        
+        Spacecraft spacecraft = new Spacecraft();
+        spacecraft.setAstronaut(astronaut);
+        spacecraft.setSerialNumber("Liberty1001");
+        
+    	HashMap<String, Integer> destinations = new HashMap<String, Integer>();
+    	destinations.put("Mars", 1500);
+    	destinations.put("Pluto", 10000);
+        spacecraft.setDestinations(destinations);
+        
+        Jsonb jsonb = JsonbBuilder.create();
+        String spacecraftJSON = jsonb.toJson(spacecraft);
+        Response response = postResponse(getURL(port, "validatespacecraft"), 
+                spacecraftJSON, false);
+        String actualResponse = response.readEntity(String.class);
+        String expectedResponse = "No Constraint Violations";
+        
+        assertEquals("Unexpected response when validating beans.", 
+                expectedResponse, actualResponse);
     }
 
     @Test
     public void testFieldLevelConstraintViolation() throws Exception {
-        String validationType = "FieldLevelValidation";
-        String destinations = "Mars,-100";
-        String age = "25";
-        String emailAddress = "libby";
-        String name = "Libby";
-        String serialNumber = "Liberty123";
+        Astronaut astronaut = new Astronaut();
+        astronaut.setAge(25);
+        astronaut.setEmailAddress("libby");
+        astronaut.setName("Libby");
+        
+        Spacecraft spacecraft = new Spacecraft();
+        spacecraft.setAstronaut(astronaut);
+        spacecraft.setSerialNumber("Liberty123");
+        
+        HashMap<String, Integer> destinations = new HashMap<String, Integer>();
+    	destinations.put("Mars", -100);
+        spacecraft.setDestinations(destinations);
+        
+        Jsonb jsonb = JsonbBuilder.create();
+        String spacecraftJSON = jsonb.toJson(spacecraft);
+        Response response = postResponse(getURL(port, "validatespacecraft"), 
+                spacecraftJSON, false);
+        String actualResponse = response.readEntity(String.class);
+        
+        String expectedDestinationResponse = "must be greater than 0";
+        assertTrue("Expected response to contain: " + expectedDestinationResponse,
+        		 actualResponse.contains(expectedDestinationResponse));
+        
+        String expectedEmailResponse = "must be a well-formed email address";
+        assertTrue("Expected response to contain: " + expectedEmailResponse,
+       		 actualResponse.contains(expectedEmailResponse));
 
-        String url = targetUrl.concat("?validationType="+ validationType +
-                                      "&destinations=" + destinations + "&age=" + age +
-                                      "&emailAddress=" + emailAddress + "&name=" +
-                                      name + "&serialNumber=" + serialNumber);
-        HttpURLConnection con = testRequestHelper(url);
-        assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
-        String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("must be greater than 0"));
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("must be a well-formed email address"));
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("serial number is not valid"));
+        String expectedSerialNumberResponse = "serial number is not valid";
+        assertTrue("Expected response to contain: " + expectedSerialNumberResponse,
+          		 actualResponse.contains(expectedSerialNumberResponse));
     }
 
     @Test
     public void testNoMethodLevelConstraintViolations() throws Exception {
-        String validationType = "MethodLevelValidation";
         String launchCode = "OpenLiberty";
-        String url = targetUrl.concat("?validationType="+ validationType +
-                                      "&launchCode=" + launchCode);
-        HttpURLConnection con = testRequestHelper(url);
-        assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
-        String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("No constraint violations found."));
+        Response response = postResponse(getURL(port, "launchspacecraft"), 
+                launchCode, true);
+        
+        String actualResponse = response.readEntity(String.class);
+        String expectedResponse = "launched";
+        
+        assertEquals("Unexpected response from call to launchSpacecraft", 
+                expectedResponse, actualResponse);
+       
     }
 
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
-        String validationType = "MethodLevelValidation";
         String launchCode = "incorrectCode";
-        String url = targetUrl.concat("?validationType="+ validationType +
-                                      "&launchCode=" + launchCode);
-        HttpURLConnection con = testRequestHelper(url);
-        assertEquals("Incorrect response code from " + url, 200, con.getResponseCode());
-        String response = testBufferHelper(con);
-        assertTrue("Incorrect response from " + url + ". Response: " + response,
-                   response.contains("must be true"));
+        Response response = postResponse(getURL(port, "launchspacecraft"), 
+                launchCode, true);
+        
+        String actualResponse = response.readEntity(String.class);
+        assertTrue("Unexpected response from call to launchSpacecraft",
+        actualResponse.contains("must be true"));
+    }
+    
+    private Response postResponse(String url, String value, 
+                                  boolean isMethodLevel) {
+    	if(isMethodLevel)
+            return client.target(url).request().post(Entity.text(value));
+    	else
+    		return client.target(url).request().post(Entity.entity(value, 
+    		        MediaType.APPLICATION_JSON));
     }
 
-    private HttpURLConnection testRequestHelper(String url) throws Exception {
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-        return con;
-    }
-
-    private String testBufferHelper(HttpURLConnection con) throws Exception {
-        BufferedReader in
-                = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-        return response.toString();
+    private String getURL(String port, String function) {
+    	return "http://localhost:" + port + "/Spacecraft/beanvalidation/" + 
+                function;
     }
 }

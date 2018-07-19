@@ -28,9 +28,9 @@ validate data.
 == What you'll learn
 
 You will learn the basics of writing and testing an application that uses Bean 
-Validation and the new functionality of Bean Validation 2.0. The application 
-uses Bean Validation to validate data from a form or servlet request and to 
-ensure that the request meets the defined constraints.
+Validation and the new functionality of Bean Validation 2.0. The application has a
+service that uses Bean Validation to validate that the supplied JavaBeans meet the
+defined constraints.
 
 Bean Validation is a Java specification that simplifies data validation and error 
 checking. Bean Validation uses a standard way to validate data stored in 
@@ -71,13 +71,51 @@ mvn liberty:start-server
 
 ```
 
-Point your browser to the `http://localhost:9080/Spacecraft` URL. You see a web form for
-filling in information about an astronaut and spacecraft. The form accepts an astronaut 
-name that cannot be blank, an age that must be between 18 and 100, and a correctly 
-formatted email address. The form also accepts a spacecraft serial number that consists 
-of `Liberty` followed by 4 integers. Enter data that meets and violates the 
-constraints. When the data is valid, no errors appear on the screen, but when data is 
-invalid, a message appears that details why the data is invalid.
+Point your browser to the `http://localhost:9080/openapi/ui` URL. You see the OpenAPI
+user interface documenting the REST endpoints used in this guide. If you are interested
+in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs]. 
+Expand the `/beanvalidation/validatespacecraft POST request to validate your
+spacecraft bean.` section and click the `Try it out` button. Copy the following
+into the text box:
+
+[source]
+----
+{
+  "astronaut": {
+    "name": "Libby",
+    "age": 25,
+    "emailAddress": "libbybot@openliberty.io"
+  },
+  "destinations": {
+    "Mars": 500
+  },
+  "serialNumber": "Liberty0001"
+}
+----
+
+Click `Execute` and you will receive the response `No Constraint Violations` since
+the values specified pass the constraints you will create in this guide. Now try copying
+the following value into the box:
+
+[source]
+----
+{
+  "astronaut": {
+    "name": "Libby",
+    "age": 12,
+    "emailAddress": "libbybot@openliberty.io"
+  },
+  "destinations": {
+    "Mars": 500
+  },
+  "serialNumber": "Liberty0001"
+}
+----
+
+This time you will receive `Constraint Violation Found: must be greater than or equal
+to 18` as a response since the age specified was under the minimum age of 18. Try other
+combinations of values to get a feel for the constraints that will be defined in this
+guide.
 
 When you are done, stop the Open Liberty server.
 
@@ -100,10 +138,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 ----
 
 The bean stores the attributes of an astronaut, `name`, `age`, and `emailAddress`, and
-provides getters and setters to access and set the values. The JavaBean needs to be a 
-CDI managed bean to allow for JSF integration. Because the `astronaut` bean is a CDI 
-managed bean, a scope is necessary. A request scope is used in this example. To learn 
-more about CDI, see https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
+provides getters and setters to access and set the values.
 
 Apply the following constraints:
 
@@ -132,10 +167,12 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.ja
 ----
 
 The `Spacecraft` bean contains 3 fields, `astronaut`, `serialNumber`, and 
-`destination`. The JavaBean needs to be a CDI managed bean to allow for JSF 
-integration. Because the `spacecraft` bean is a CDI managed bean, a scope is necessary. 
-A request scope is used in this example. You will also use method-level validation on 
-this JavaBean, and method-level validation uses CDI interceptors.
+`destination`. The JavaBean needs to be a CDI managed bean to allow for 
+method-level validation, which uses CDI interceptions. Because the 
+`spacecraft` bean is a CDI managed bean, a scope is necessary. A request 
+scope is used in this example. To learn more about CDI, see 
+https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
+
 
 Apply the following constraints:
 
@@ -213,31 +250,30 @@ constraint, `isValid` returns `true`. If the serial number does not match, it re
 // ==================================================================================
 == Programmatically validating constraints
 
-Finally, create a servlet that can be used to programmatically validate the constraints 
+Finally, create a service that can be used to programmatically validate the constraints
 on the `Spacecraft` and `Astronaut` JavaBeans in the
-`src/main/java/io/openliberty/guides/beanvalidation/ValidatingServlet.java` file:
+`src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java` file:
 
 [source,java]
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/ValidatingServlet.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[tags=**;!copyright]
 ----
 
 Two resources, a validator and an instance of the `Spacecraft`JavaBean, are injected 
-into the servlet. The default validator is used and is obtained through resource 
-injection. However, you can also obtain the default validator with CDI injection or 
-a JNDI lookup. The `Spacecraft` JavaBean is injected so that the method-level 
+into the class. The default validator is used and is obtained through CDI
+injection. However, you can also obtain the default validator with resource injection
+or a JNDI lookup. The `Spacecraft` JavaBean is injected so that the method-level 
 constraints can be validated.
 
-The programmatic validation takes place in the `processInputData` method. First, the 
-`Spacecraft`and `Astronaut` beans are populated with the supplied data using the 
-standard setters. To validate the data, the `validate` method is called on the 
-`Spacecraft` bean. Because the `Spacecraft` bean contains the `@Valid` constraint on 
-the `Astronaut` bean, both JavaBeans are validated. Any constraint violations found 
-during the call to the `validate` method are returned as a set of `ConstraintViolation` 
-objects.
+The programmatic validation takes place in the `validateSpacecraft` method. To validate
+the data, the `validate` method is called on the `Spacecraft` bean. Because the
+`Spacecraft` bean contains the `@Valid` constraint on the `Astronaut` bean, both
+JavaBeans are validated. Any constraint violations found during the call to the
+`validate` method are returned as a set of `ConstraintViolation` objects.
 
-A call is then made to the `launchSpacecraft` method, which throws a 
-`ConstraintViolationException` exception if either of the method-level constraints is 
+The method level validation occurs in the `launchSpacecraft` method. A call is then
+made to the `launchSpacecraft` method on the `Spacecraft` bean, which throws a
+`ConstraintViolationException` exception if either of the method-level constraints is
 violated.
 
 // ==================================================================================
@@ -246,40 +282,53 @@ violated.
 
 include::{common-includes}/mvnbuild.adoc[]
 
-Navigate to the `http://localhost:9080/Spacecraft` URL. Enter the following values, 
-which pass the previously defined constraints:
+Navigate to the `http://localhost:9080/openapi/ui` URL. Expand the
+`/beanvalidation/validatespacecraft POST request to validate your spacecraft bean.`
+section and click the `Try it out` button. Copy the following into the text box:
+
+[source]
+----
+{
+  "astronaut": {
+    "name": "Libby",
+    "age": 25,
+    "emailAddress": "libbybot@openliberty.io"
+  },
+  "destinations": {
+    "Mars": 500
+  },
+  "serialNumber": "Liberty0001"
+}
+----
+
+Click `Execute` and you will receive the response `No Constraint Violations` since
+the values specified pass previously defined constraints.
+
+Next, modify the following values, all of which break the previously defined
+constraints:
 
 [source, role="no_copy"]
 ----
-Name = Libby
-Age = 25
-Email = libbybot@openliberty.io
-SerialNumber = Liberty0001
-----
-
-After you click the `Submit` button, you won't see any changes because constraint 
-violations do not exist. Next, enter the following values, all of which break the 
-previously defined constraints:
-
-[source, role="no_copy"]
-----
-Leave name blank
 Age = 10
 Email = libbybot
 SerialNumber = Liberty1
 ----
 
-After you click `Submit`, the constraint violation messages display:
+After you click `Execute`, the response will contain the following constraint
+violations:
 
 [source, role="no_copy"]
 ----
-Name: must not be blank
-Age: must be greater than or equal to 18
-Email Address: must be a well-formed email address
-Serial Number: serial number is not valid.
+Constraint Violation Found: serial number is not valid.
+Constraint Violation Found: must be greater than or equal to 18
+Constraint Violation Found: must be a well-formed email address
 ----
 
-The form was created with JSF, which has built-in integration with Bean Validation.
+To try the method-level validation expand the `/beanvalidation/launchspacecraft
+POST request to specify a launch code.` section.  Enter `OpenLiberty` in the text box
+to note that `launched` is returned since the launch code passes the defined
+constraints. Replace OpenLiberty with anything else to note that a constraint
+violation is returned.
 
 include::{common-includes}/mvncompile.adoc[]
 
@@ -288,8 +337,8 @@ include::{common-includes}/mvncompile.adoc[]
 // ==================================================================================
 == Testing the constraints
 
-Now, write automated tests to drive the previously created servlet. Create the
-test class in the 
+Now, write automated tests to drive the previously created service. Create the
+test class in the
 `src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java`
 file:
 
@@ -298,10 +347,9 @@ file:
 include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=**;!copyright]
 ----
 
-Place the `@BeforeClass` annotation on a method that runs before any of the test cases. 
-The `oneTimeSetup` method retrieves the port number for the Open Liberty server and 
-builds a base URL string that is used throughout the tests, which are described as 
-follows:
+Place the `@Before` annotation on a method that runs before the test cases. The
+`setup` method retrieves the port number for the Open Liberty server and creates a
+`Client`  that is used throughout the tests, which are described as follows:
 
 * The `testNoFieldLevelConstraintViolations` test case verifies that constraint 
 violations do not occur when valid data is supplied to the `Astronaut` and `Spacecraft` 
@@ -320,7 +368,7 @@ the serial number.
 constraints that are specified on the `launchSpacecraft` method of the `Spacecraft` 
 bean are validated when the method is called with no violations. In this test, the call 
 to the `launchSpacecraft` method is made with the `OpenLiberty` argument. A value of 
-`true` is retuned, which passes the specified constraints.
+`true` is returned, which passes the specified constraints.
 
 * The `testMethodLevelConstraintViolation` test case verifies that a 
 `ConstraintViolationException` exception is thrown when one of the method-level 
