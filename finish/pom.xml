@@ -27,9 +27,27 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.0</version>
+          <groupId>javax.json.bind</groupId>
+          <artifactId>javax.json.bind-api</artifactId>
+          <version>1.0</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>yasson</artifactId>
+            <version>1.0.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>javax.json</artifactId>
+            <version>1.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.json</groupId>
+            <artifactId>javax.json-api</artifactId>
+            <version>1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -45,15 +63,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>javax.faces</groupId>
-            <artifactId>javax.faces-api</artifactId>
-            <version>2.3</version>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-client</artifactId>
+            <version>3.1.11</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -75,6 +99,12 @@
             <groupId>javax.activation</groupId>
             <artifactId>activation</artifactId>
             <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.microprofile.openapi</groupId>
+            <artifactId>microprofile-openapi-api</artifactId>
+            <version>1.0.1</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -113,16 +143,12 @@
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <!-- TODO switch from daily driver to release containing beanValidation-2.0 before release-->
-                    <install>
-                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/2018-06-01_0659/openliberty-all-20180601-0500.zip</runtimeUrl>
-                    </install>
-                    <!--assemblyArtifact>
+                    <assemblyArtifact>
                          <groupId>io.openliberty</groupId>
                          <artifactId>openliberty-runtime</artifactId>
-                         <version>17.0.0.4</version>
+                         <version>RELEASE</version>
                         <type>zip</type>
-                    </assemblyArtifact-->
+                    </assemblyArtifact>
                     <configFile>src/main/liberty/config/server.xml</configFile>
                     <packageFile>${package.file}</packageFile>
                     <include>${packaging.type}</include>

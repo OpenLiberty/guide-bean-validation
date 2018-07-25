@@ -21,8 +21,6 @@ import javax.validation.constraints.Email;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
-@Named
-@RequestScoped
 public class Astronaut implements Serializable {
 
     private static final long serialVersionUID = 1L;
