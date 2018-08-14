@@ -14,23 +14,23 @@
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
-= Creating an application with Bean Validation
+= Validating constraints with microservices
 
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-You'll explore how to use Bean Validation in Open Liberty to create an application to 
-validate data.
+You'll explore how to use Bean Validation in Open Liberty to create a microservice 
+to validate data.
 
 // ==================================================================================
 // What you'll learn
 // ==================================================================================
 == What you'll learn
 
-You will learn the basics of writing and testing an application that uses Bean 
-Validation and the new functionality of Bean Validation 2.0. The application has a
-service that uses Bean Validation to validate that the supplied JavaBeans meet the
-defined constraints.
+You will learn the basics of writing and testing a microservice that uses Bean 
+Validation and the new functionality of Bean Validation 2.0. The service uses
+Bean Validation to validate that the supplied JavaBeans meet the defined 
+constraints.
 
 Bean Validation is a Java specification that simplifies data validation and error 
 checking. Bean Validation uses a standard way to validate data stored in 
@@ -48,8 +48,8 @@ Some of the new built-in constraints include `@Email`, `@NotBlank`, `@Positive`,
 and `@Negative`. Also in Bean Validation 2.0, you can now specify constraints 
 on type parameters.
 
-The example application uses both field-level and method-level validation as well as
-several of the built-in constraints and a custom constraint.
+The example microservice uses both field-level and method-level validation as well 
+as several of the built-in constraints and a custom constraint.
 
 // ==================================================================================
 // Getting Started
@@ -60,10 +60,10 @@ include::{common-includes}/gitclone.adoc[]
 === Try what you'll build
 
 The `finish` directory in the root of this guide contains the finished Bean Validation 
-application. Feel free to give it a try before you proceed with building your own.
+microservice. Feel free to give it a try before you proceed with building your own.
 
-To try out the application, first navigate to the `finish` directory and then execute 
-the following Maven goals to build the application and run it inside Open Liberty:
+To try out the microservice, first navigate to the `finish` directory and then execute 
+the following Maven goals to build the microservice and run it inside Open Liberty:
 
 ```
 mvn clean install
@@ -396,5 +396,5 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 == Great work! You're done!
 
-You developed and tested a Java application by using Bean Validation and Open 
+You developed and tested a Java microservice by using Bean Validation and Open 
 Liberty.
