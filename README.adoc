@@ -216,7 +216,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.
 ----
 
 The `@Target` annotation indicates the element types to which you can apply the custom 
-constraint.Because the `SerialNumber` constraint is used only on a field, only the 
+constraint. Because the `SerialNumber` constraint is used only on a field, only the 
 `FIELD` target is specified.
 
 When you define a constraint annotation, the specification requires the `RUNTIME` 
@@ -259,7 +259,7 @@ on the `Spacecraft` and `Astronaut` JavaBeans in the
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[tags=**;!copyright]
 ----
 
-Two resources, a validator and an instance of the `Spacecraft`JavaBean, are injected 
+Two resources, a validator and an instance of the `Spacecraft` JavaBean, are injected 
 into the class. The default validator is used and is obtained through CDI
 injection. However, you can also obtain the default validator with resource injection
 or a JNDI lookup. The `Spacecraft` JavaBean is injected so that the method-level 
