@@ -43,7 +43,7 @@ public class BeanValidationEndpoint {
     @Path("/validatespacecraft")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "POST request to validate your spacecraft bean.")
+    @Operation(summary = "POST request to validate your spacecraft bean")
     public String validateSpacecraft(
                 @RequestBody(description = "Specify the values to create the "
            		+ "Astronaut and Spacecraft beans.", 
@@ -69,7 +69,7 @@ public class BeanValidationEndpoint {
     @POST
     @Path("/launchspacecraft")
     @Produces(MediaType.TEXT_PLAIN)
-    @Operation(summary = "POST request to specify a launch code.")
+    @Operation(summary = "POST request to specify a launch code")
     public String launchSpacecraft(
             @RequestBody(description = "Enter the launch code.  Must not be "
             		+ "null and must equal OpenLiberty for successful launch.",

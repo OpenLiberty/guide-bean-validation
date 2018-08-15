@@ -75,7 +75,7 @@ Point your browser to the `http://localhost:9080/openapi/ui` URL. You see the Op
 user interface documenting the REST endpoints used in this guide. If you are interested
 in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs]. 
 Expand the `/beanvalidation/validatespacecraft POST request to validate your
-spacecraft bean.` section and click the `Try it out` button. Copy the following
+spacecraft bean` section and click the `Try it out` button. Copy the following
 into the text box:
 
 [source]
@@ -283,7 +283,7 @@ violated.
 include::{common-includes}/mvnbuild.adoc[]
 
 Navigate to the `http://localhost:9080/openapi/ui` URL. Expand the
-`/beanvalidation/validatespacecraft POST request to validate your spacecraft bean.`
+`/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click the `Try it out` button. Copy the following into the text box:
 
 [source]
@@ -325,7 +325,7 @@ Constraint Violation Found: must be a well-formed email address
 ----
 
 To try the method-level validation expand the `/beanvalidation/launchspacecraft
-POST request to specify a launch code.` section.  Enter `OpenLiberty` in the text box
+POST request to specify a launch code` section.  Enter `OpenLiberty` in the text box
 to note that `launched` is returned since the launch code passes the defined
 constraints. Replace OpenLiberty with anything else to note that a constraint
 violation is returned.
