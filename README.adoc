@@ -59,7 +59,7 @@ include::{common-includes}/gitclone.adoc[]
 
 === Try what you'll build
 
-The `finish` directory in the root of this guide contains the finished Bean validation 
+The `finish` directory in the root of this guide contains the finished bean validation 
 microservice. Feel free to give it a try before you proceed with building your own.
 
 To try out the microservice, first navigate to the `finish` directory and then execute 
@@ -192,7 +192,7 @@ not need to be respecified in the `Spacecraft` bean. Instead, because the `@Vali
 annotation is applied to the field, all the nested constraints on the `Astronaut` bean 
 are validated.
 
-You can also use Bean validation with CDI to provide method-level validation. The
+You can also use bean validation with CDI to provide method-level validation. The
 `launchSpacecraft` method on the `Spacecraft` bean accepts a `launchCode` parameter, 
 and if the `launchCode` parameter is `OpenLiberty`, the method returns `true` that the 
 spacecraft is launched. Otherwise, the method returns `false`. The `launchSpacecraft` 
@@ -395,5 +395,5 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 == Great work! You're done!
 
-You developed and tested a Java microservice by using Bean validation and Open 
+You developed and tested a Java microservice by using bean validation and Open 
 Liberty.
