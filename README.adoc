@@ -144,15 +144,15 @@ The `Astronaut` class has the following constraints applied:
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
 `@NotBlank` constraint, which ensures the value is not null and contains one 
-non-whitespace character. The annotation is applied to the `name` field.
+non-whitespace character. The annotation constrains the `name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
 Bean Validation 2.0 is `@Email`, which can validate that the `Astronaut` bean includes 
-a correctly formatted email address. The annotation is applied to the `email` field.
+a correctly formatted email address. The annotation constrains the `email` field.
 
 * The astronaut needs to be between 18 and 100 years old. Bean validation allows you to 
 specify multiple constraints on a single field. The `@Min` and `@Max` built-in 
-constraints are applied to the `age` field to check that the astronaut is between the
+constraints applied to the `age` field check that the astronaut is between the
 ages of 18 and 100.
 
 In this example, the annotation is on the field value itself. You can also place the 
@@ -178,19 +178,19 @@ The `Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean 
 Validation 2.0, you can specify constraints on type parameters. The `@NotBlank` and 
-`@Positive` constraints are used to constrain the `destination` map so that the 
-destination name is not blank, and the distance is positive. The `@Positive` 
-constraint is used to ensure that numeric value fields are greater than 0.
+`@Positive` annotations constrain the `destination` map so that the destination name 
+is not blank, and the distance is positive. The `@Positive` constraint ensures that 
+numeric value fields are greater than 0.
 
-* A correctly formatted serial number must be supplied. In addition to specifying the 
+* A correctly formatted serial number is required. In addition to specifying the 
 built-in constraints, you can create custom constraints to allow user-defined validation
-rules. The `@SerialNumber` constraint that is applied to the `serialNumber` field is a 
+rules. The `@SerialNumber` annotation that constrains the `serialNumber` field is a 
 custom constraint, which will be created later.
 
 Because you already specified constraints on the `Astronaut` bean, the constraints do 
-not need to be respecified in the `Spacecraft` bean. Instead, because the `@Valid` 
-annotation is applied to the field, all the nested constraints on the `Astronaut` bean 
-are validated.
+not need to be respecified in the `Spacecraft` bean. Instead, because of the `@Valid` 
+annotation on the field, all the nested constraints on the `Astronaut` bean are 
+validated.
 
 You can also use bean validation with CDI to provide method-level validation. The
 `launchSpacecraft` method on the `Spacecraft` bean accepts a `launchCode` parameter, 
@@ -198,8 +198,8 @@ and if the `launchCode` parameter is `OpenLiberty`, the method returns `true` th
 spacecraft is launched. Otherwise, the method returns `false`. The `launchSpacecraft` 
 method uses both parameter and return value validation. The `@NotNull` constraint 
 eliminates the need to manually check within the method that the parameter is not null. 
-Additionally, the method has the `@AssertTrue` return-level constraint to 
-enforce that the method must return the `true` boolean.
+Additionally, the method has the `@AssertTrue` return-level constraint to enforce that 
+the method must return the `true` boolean.
 
 // ==================================================================================
 // Creating custom constraints
@@ -221,12 +221,12 @@ constraint. Because the `SerialNumber` constraint is used only on a field, only 
 When you define a constraint annotation, the specification requires the `RUNTIME` 
 retention policy.
 
-The `@Constraint` annotation is used to specify the class that contains the validation 
-logic for the custom constraint.
+The `@Constraint` annotation specifies the class that contains the validation logic for 
+the custom constraint.
 
 In the `SerialNumber` body, the `message()` method provides the message that is output 
-when a validation constraint is violated. The `groups()` and `payload()` methods are used 
-to associate this constraint only with certain groups or payloads. The defaults are used 
+when a validation constraint is violated. The `groups()` and `payload()` methods 
+associate this constraint only with certain groups or payloads. The defaults are used 
 in the example.
 
 Now, create the class that provides the validation for the `@SerialNumber` constraint 
@@ -346,9 +346,9 @@ file:
 include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=**;!copyright]
 ----
 
-The `@Before` annotation is placed on a method that runs before the test cases. The
-`setup` method retrieves the port number for the Open Liberty server and creates a
-`Client` that is used throughout the tests, which are described as follows:
+The `@Before` annotation causes the `setup` method to execute before the test cases. 
+The `setup` method retrieves the port number for the Open Liberty server and creates 
+a `Client` that is used throughout the tests, which are described as follows:
 
 * The `testNoFieldLevelConstraintViolations` test case verifies that constraint 
 violations do not occur when valid data is supplied to the `Astronaut` and `Spacecraft` 
