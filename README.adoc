@@ -9,7 +9,7 @@
 :projectid: bean-validation
 :page-duration: 20 minutes
 :page-releasedate: 2018-02-05
-:page-description: Learn how to validate JavaBeans using Bean Validation and Open Liberty.
+:page-description: Learn how to validate JavaBeans using bean validation and Open Liberty.
 :page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', '@Email', '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
@@ -19,26 +19,26 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-You'll explore how to use Bean Validation in Open Liberty to create a microservice 
-to validate data.
+You'll explore how to use bean validation in Open Liberty to create a microservice 
+to validate user input data.
 
 // ==================================================================================
 // What you'll learn
 // ==================================================================================
 == What you'll learn
 
-You will learn the basics of writing and testing a microservice that uses Bean 
-Validation and the new functionality of Bean Validation 2.0. The service uses
-Bean Validation to validate that the supplied JavaBeans meet the defined 
+You will learn the basics of writing and testing a microservice that uses bean 
+validation and the new functionality of Bean Validation 2.0. The service uses
+bean validation to validate that the supplied JavaBeans meet the defined 
 constraints.
 
 Bean Validation is a Java specification that simplifies data validation and error 
-checking. Bean Validation uses a standard way to validate data stored in 
+checking. Bean validation uses a standard way to validate data stored in 
 JavaBeans. Validation can be performed manually or with integration with other 
 specifications and frameworks, such as CDI, JPA, or JSF. To set rules on data, 
 apply constraints by using annotations or XML configuration files. Bean
-Validation provides both built-in constraints and the ability to create custom 
-constraints. Bean Validation allows for validation of both JavaBean fields and 
+validation provides both built-in constraints and the ability to create custom 
+constraints. Bean validation allows for validation of both JavaBean fields and 
 methods. For method-level validation, both the input parameters and return value 
 can be validated.
 
@@ -59,7 +59,7 @@ include::{common-includes}/gitclone.adoc[]
 
 === Try what you'll build
 
-The `finish` directory in the root of this guide contains the finished Bean Validation 
+The `finish` directory in the root of this guide contains the finished bean validation 
 microservice. Feel free to give it a try before you proceed with building your own.
 
 To try out the microservice, first navigate to the `finish` directory and then execute 
@@ -75,7 +75,7 @@ Point your browser to the `http://localhost:9080/openapi/ui` URL. You see the Op
 user interface documenting the REST endpoints used in this guide. If you are interested
 in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs]. 
 Expand the `/beanvalidation/validatespacecraft POST request to validate your
-spacecraft bean` section and click the `Try it out` button. Copy the following
+spacecraft bean` section and click *Try it out*. Copy the following example input
 into the text box:
 
 [source]
@@ -93,8 +93,8 @@ into the text box:
 }
 ----
 
-Click `Execute` and you will receive the response `No Constraint Violations` since
-the values specified pass the constraints you will create in this guide. Now try copying
+Click *Execute* and you receive the response `No Constraint Violations` because the 
+values specified pass the constraints you will create in this guide. Now try copying
 the following value into the box:
 
 [source]
@@ -112,12 +112,12 @@ the following value into the box:
 }
 ----
 
-This time you will receive `Constraint Violation Found: must be greater than or equal
-to 18` as a response since the age specified was under the minimum age of 18. Try other
-combinations of values to get a feel for the constraints that will be defined in this
-guide.
+This time you receive `Constraint Violation Found: must be greater than or equal
+to 18` as a response because the age specified was under the minimum age of 18. Try 
+other combinations of values to get a feel for the constraints that will be defined 
+in this guide.
 
-When you are done, stop the Open Liberty server.
+When you are done, stop the Open Liberty server:
 
 ```
 mvn liberty:stop-server
@@ -140,22 +140,22 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 The bean stores the attributes of an astronaut, `name`, `age`, and `emailAddress`, and
 provides getters and setters to access and set the values.
 
-Apply the following constraints:
+The `Astronaut` class has the following constraints applied:
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
 `@NotBlank` constraint, which ensures the value is not null and contains one 
-non-whitespace character. Apply the annotation to the `name` field.
+non-whitespace character. The annotation constrains the `name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
 Bean Validation 2.0 is `@Email`, which can validate that the `Astronaut` bean includes 
-a correctly formatted email address. Apply the annotation to the `email` field.
+a correctly formatted email address. The annotation constrains the `email` field.
 
-* The astronaut needs to be between 18 and 100 years old. Bean Validation allows you to 
-specify multiple constraints on a single field. Ensure that the astronaut is between 
-the ages of 18 and 100 by using the `@Min` and `@Max` built-in constraints on the `age` 
-field.
+* The astronaut needs to be between 18 and 100 years old. Bean validation allows you to 
+specify multiple constraints on a single field. The `@Min` and `@Max` built-in 
+constraints applied to the `age` field check that the astronaut is between the
+ages of 18 and 100.
 
-In this example, place the annotation on the field value itself. You can also place the 
+In this example, the annotation is on the field value itself. You can also place the 
 annotation on the getter method, which has the same effect.
 
 Create another class to represent a spacecraft in the
@@ -174,33 +174,32 @@ scope is used in this example. To learn more about CDI, see
 https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
 
 
-Apply the following constraints:
+The `Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean 
-Validation 2.0, you can specify constraints on type parameters. Use the `@NotBlank` and 
-`@Positive` constraints to constrain the `destination` map so that the destination name 
-is not blank, and the distance is positive. Use the `@Positive` constraint to ensure 
-that numeric value fields are greater than 0.
+Validation 2.0, you can specify constraints on type parameters. The `@NotBlank` and 
+`@Positive` annotations constrain the `destination` map so that the destination name 
+is not blank, and the distance is positive. The `@Positive` constraint ensures that 
+numeric value fields are greater than 0.
 
-* Supply a correctly formatted serial number. In addition to specifying the built-in 
-constraints, you can create custom constraints to allow user-defined validation rules. 
-The `@SerialNumber` constraint that is applied to the `serialNumber` field is a custom 
-constraint, which will be created later.
+* A correctly formatted serial number is required. In addition to specifying the 
+built-in constraints, you can create custom constraints to allow user-defined validation
+rules. The `@SerialNumber` annotation that constrains the `serialNumber` field is a 
+custom constraint, which will be created later.
 
 Because you already specified constraints on the `Astronaut` bean, the constraints do 
-not need to be respecified in the `Spacecraft` bean. Instead, by applying the `@Valid` 
-annotation to the field, all the nested constraints on the `Astronaut` bean are 
+not need to be respecified in the `Spacecraft` bean. Instead, because of the `@Valid` 
+annotation on the field, all the nested constraints on the `Astronaut` bean are 
 validated.
 
-You can also use Bean Validation with CDI to provide method-level validation. The
+You can also use bean validation with CDI to provide method-level validation. The
 `launchSpacecraft` method on the `Spacecraft` bean accepts a `launchCode` parameter, 
 and if the `launchCode` parameter is `OpenLiberty`, the method returns `true` that the 
 spacecraft is launched. Otherwise, the method returns `false`. The `launchSpacecraft` 
 method uses both parameter and return value validation. The `@NotNull` constraint 
-eliminates the need to manually check the parameter within the method. Use the 
-`@NotNull` constraint on the `launchCode` parameter to validate that the parameter is 
-not null. Additionally, the method has the `@AssertTrue` return-level constraint to 
-enforce that the method must return the `true` boolean.
+eliminates the need to manually check within the method that the parameter is not null. 
+Additionally, the method has the `@AssertTrue` return-level constraint to enforce that 
+the method must return the `true` boolean.
 
 // ==================================================================================
 // Creating custom constraints
@@ -222,11 +221,11 @@ constraint. Because the `SerialNumber` constraint is used only on a field, only 
 When you define a constraint annotation, the specification requires the `RUNTIME` 
 retention policy.
 
-Use the `@Constraint` annotation to specify the class that contains the validation 
-logic for the custom constraint.
+The `@Constraint` annotation specifies the class that contains the validation logic for 
+the custom constraint.
 
 In the `SerialNumber` body, the `message()` method provides the message that is output 
-when a validation constraint is violated. Use the `groups()` and `payload()` methods to 
+when a validation constraint is violated. The `groups()` and `payload()` methods 
 associate this constraint only with certain groups or payloads. The defaults are used 
 in the example.
 
@@ -284,7 +283,7 @@ include::{common-includes}/mvnbuild.adoc[]
 
 Navigate to the `http://localhost:9080/openapi/ui` URL. Expand the
 `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
-section and click the `Try it out` button. Copy the following into the text box:
+section and click *Try it out*. Copy the following example input into the text box:
 
 [source]
 ----
@@ -301,7 +300,7 @@ section and click the `Try it out` button. Copy the following into the text box:
 }
 ----
 
-Click `Execute` and you will receive the response `No Constraint Violations` since
+Click *Execute* and you receive the response `No Constraint Violations` because
 the values specified pass previously defined constraints.
 
 Next, modify the following values, all of which break the previously defined
@@ -314,7 +313,7 @@ Email = libbybot
 SerialNumber = Liberty1
 ----
 
-After you click `Execute`, the response will contain the following constraint
+After you click *Execute*, the response contains the following constraint
 violations:
 
 [source, role="no_copy"]
@@ -326,7 +325,7 @@ Constraint Violation Found: must be a well-formed email address
 
 To try the method-level validation expand the `/beanvalidation/launchspacecraft
 POST request to specify a launch code` section.  Enter `OpenLiberty` in the text box
-to note that `launched` is returned since the launch code passes the defined
+to note that `launched` is returned because the launch code passes the defined
 constraints. Replace OpenLiberty with anything else to note that a constraint
 violation is returned.
 
@@ -347,9 +346,9 @@ file:
 include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=**;!copyright]
 ----
 
-Place the `@Before` annotation on a method that runs before the test cases. The
-`setup` method retrieves the port number for the Open Liberty server and creates a
-`Client`  that is used throughout the tests, which are described as follows:
+The `@Before` annotation causes the `setup` method to execute before the test cases. 
+The `setup` method retrieves the port number for the Open Liberty server and creates 
+a `Client` that is used throughout the tests, which are described as follows:
 
 * The `testNoFieldLevelConstraintViolations` test case verifies that constraint 
 violations do not occur when valid data is supplied to the `Astronaut` and `Spacecraft` 
@@ -372,8 +371,8 @@ to the `launchSpacecraft` method is made with the `OpenLiberty` argument. A valu
 
 * The `testMethodLevelConstraintViolation` test case verifies that a 
 `ConstraintViolationException` exception is thrown when one of the method-level 
-constraints is violated. A call with an incorrect parameter, such as `incorrectCode`, 
-is made to the `launchSpacecraft` method of the `Spacecraft` bean. The method returns 
+constraints is violated. A call with an incorrect parameter, `incorrectCode`, is 
+made to the `launchSpacecraft` method of the `Spacecraft` bean. The method returns 
 `false`, which violates the defined constraint, and a `ConstraintViolationException` 
 exception is thrown. The exception includes the constraint violation message, which 
 is `must be true` in this example.
@@ -396,5 +395,5 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 == Great work! You're done!
 
-You developed and tested a Java microservice by using Bean Validation and Open 
+You developed and tested a Java microservice by using bean validation and Open 
 Liberty.
