@@ -20,7 +20,7 @@
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
 You'll explore how to use bean validation in Open Liberty to create a microservice 
-to validate data.
+to validate user input data.
 
 // ==================================================================================
 // What you'll learn
