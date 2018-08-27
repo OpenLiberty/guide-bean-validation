@@ -397,3 +397,5 @@ Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
 You developed and tested a Java microservice by using bean validation and Open 
 Liberty.
+
+include::{common-includes}/finish.adoc[]
