@@ -9,7 +9,7 @@
 :projectid: bean-validation
 :page-duration: 20 minutes
 :page-releasedate: 2018-08-24
-:page-description: Learn how to validate JavaBeans using bean validation and Open Liberty.
+:page-description: Explore the use of bean validation to validate user input data for microservices.
 :page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', '@Email', '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
@@ -19,8 +19,8 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-You'll explore how to use bean validation in Open Liberty to create a microservice 
-to validate user input data.
+Explore the use of bean validation to validate user input data for 
+microservices.
 
 // ==================================================================================
 // What you'll learn
@@ -35,12 +35,13 @@ constraints.
 Bean Validation is a Java specification that simplifies data validation and error 
 checking. Bean validation uses a standard way to validate data stored in 
 JavaBeans. Validation can be performed manually or with integration with other 
-specifications and frameworks, such as CDI, JPA, or JSF. To set rules on data, 
-apply constraints by using annotations or XML configuration files. Bean
-validation provides both built-in constraints and the ability to create custom 
-constraints. Bean validation allows for validation of both JavaBean fields and 
-methods. For method-level validation, both the input parameters and return value 
-can be validated.
+specifications and frameworks, such as Contexts and Dependency Injection (CDI), 
+Java Persistence API (JPA), or JavaServer Faces (JSF). To set rules on data, apply 
+constraints by using annotations or XML configuration files. Bean validation 
+provides both built-in constraints and the ability to create custom constraints. 
+Bean validation allows for validation of both JavaBean fields and methods. For 
+method-level validation, both the input parameters and return value can be 
+validated.
 
 Several additional built-in constraints are included in Bean Validation 2.0, 
 which reduces the need for custom validation in common validation scenarios. 
@@ -57,19 +58,7 @@ as several of the built-in constraints and a custom constraint.
 
 include::{common-includes}/gitclone.adoc[]
 
-=== Try what you'll build
-
-The `finish` directory in the root of this guide contains the finished bean validation 
-microservice. Feel free to give it a try before you proceed with building your own.
-
-To try out the microservice, first navigate to the `finish` directory and then execute 
-the following Maven goals to build the microservice and run it inside Open Liberty:
-
-```
-mvn clean install
-mvn liberty:start-server
-
-```
+include::{common-includes}/trywhatyoubuild-intro.adoc[]
 
 Point your browser to the `http://localhost:9080/openapi/ui` URL. You see the OpenAPI
 user interface documenting the REST endpoints used in this guide. If you are interested
@@ -117,17 +106,14 @@ to 18` as a response because the age specified was under the minimum age of 18. 
 other combinations of values to get a feel for the constraints that will be defined 
 in this guide.
 
-When you are done, stop the Open Liberty server:
-
-```
-mvn liberty:stop-server
-```
-Now, navigate back to the `start` directory to begin.
+include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 // ==================================================================================
 // Applying constraints on the JavaBeans
 // ==================================================================================
 == Applying constraints on the JavaBeans
+
+Navigate to the `start` directory to begin.
 
 First, create the JavaBeans to be constrained. Create the `Astronaut` bean class
 in the `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java` file:
