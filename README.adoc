@@ -14,7 +14,7 @@
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
-:page-seo-title: Java bean validation
+:page-seo-title: Bean Validation tutorial
 :page-seo-description: How to validate JavaBeans in microservices using Java EE 8 Bean Validation
 = Validating constraints with microservices
 
