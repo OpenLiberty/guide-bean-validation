@@ -224,6 +224,9 @@
                             <includes>
                                 <include>**/it/**</include>
                             </includes>
+                            <excludes>
+                                <exclude>**/**.gitkeep</exclude>
+                            </excludes>
                             <systemPropertyVariables>
                                 <liberty.test.port>${testServerHttpPort}</liberty.test.port>
                                 <war.name>${warContext}</war.name>
