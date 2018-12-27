@@ -5,12 +5,12 @@
 //
 // Contributors:
 //     IBM Corporation
-:page-layout: guide
+:page-layout: guide-multipane
 :projectid: bean-validation
 :page-duration: 20 minutes
 :page-releasedate: 2018-08-24
 :page-description: Explore the use of bean validation to validate user input data for microservices.
-:page-tags: ['Java', 'Bean Validation', 'CDI', 'JSF', '@Email', '@Min', '@Max', '@NotBlank', '@Positive', '@Valid', '@NotNull', '@AssertTrue', 'Custom Constraint', 'Java EE']
+:page-tags: ['Java EE']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
@@ -117,77 +117,91 @@ include::{common-includes}/trywhatyoubuild-end.adoc[]
 
 Navigate to the `start` directory to begin.
 
-First, create the JavaBeans to be constrained. Create the `Astronaut` bean class
-in the `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java` file:
+First, create the JavaBeans to be constrained. 
+[role="code_command hotspot=11-50", subs="quotes"] 
+---- 
+Create the `Astronaut` class.
+`src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java`
+---- 
 
-[source,java]
+Astronaut.java
+[source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
 ----
 
-The bean stores the attributes of an astronaut, `name`, `age`, and `emailAddress`, and
-provides getters and setters to access and set the values.
+The bean stores the attributes of an astronaut, [hotspot=16]`name`, [hotspot=20]`age`, 
+and [hotspot=23]`emailAddress`, and provides getters and setters to access and set the 
+values.
 
-The `Astronaut` class has the following constraints applied:
+The [hotspot=11-50]`Astronaut` class has the following constraints applied:
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
-`@NotBlank` constraint, which ensures the value is not null and contains one 
-non-whitespace character. The annotation constrains the `name` field.
+[hotspot=15]`@NotBlank` constraint, which ensures the value is not null and contains one 
+non-whitespace character. The annotation constrains the [hotspot=16]`name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
-Bean Validation 2.0 is `@Email`, which can validate that the `Astronaut` bean includes 
-a correctly formatted email address. The annotation constrains the `email` field.
+Bean Validation 2.0 is [hotspot=22]`@Email`, which can validate that the [hotspot=11-50]`Astronaut` 
+bean includes a correctly formatted email address. The annotation constrains the 
+[hotspot=23]`emailAddress` field.
 
 * The astronaut needs to be between 18 and 100 years old. Bean validation allows you to 
-specify multiple constraints on a single field. The `@Min` and `@Max` built-in 
-constraints applied to the `age` field check that the astronaut is between the
-ages of 18 and 100.
+specify multiple constraints on a single field. The [hotspot=18]`@Min` and [hotspot=19]`@Max` 
+built-in constraints applied to the [hotspot=20]`age` field check that the astronaut is 
+between the ages of 18 and 100.
 
 In this example, the annotation is on the field value itself. You can also place the 
 annotation on the getter method, which has the same effect.
 
-Create another class to represent a spacecraft in the
-`src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java` file:
+[role='code_command hotspot=17-63 file=1', subs='quotes']
+---- 
+Create the `Spacecraft` class.
+`src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java`
+---- 
 
-[source,java]
+Spacecraft.java
+[source, java, linenums, role='code_column']
 ----
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
 ----
 
-The `Spacecraft` bean contains 3 fields, `astronaut`, `serialNumber`, and 
-`destination`. The JavaBean needs to be a CDI managed bean to allow for 
-method-level validation, which uses CDI interceptions. Because the 
-`spacecraft` bean is a CDI managed bean, a scope is necessary. A request 
-scope is used in this example. To learn more about CDI, see 
+The [hotspot=17-63 file=1]`Spacecraft` bean contains 3 fields, [hotspot=22 file=1]`astronaut`, 
+[hotspot=27 file=1]`serialNumber`, and [hotspot=24 file=1]`destination`. The JavaBean 
+needs to be a CDI managed bean to allow for method-level validation, which uses CDI 
+interceptions. Because the [hotspot=17-63 file=1]`spacecraft` bean is a CDI managed bean, 
+a scope is necessary. A request scope is used in this example. To learn more about CDI, see 
 https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
 
 
-The `Spacecraft` class has the following constraints applied:
+The [hotspot=17-63 file=1]`Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean 
-Validation 2.0, you can specify constraints on type parameters. The `@NotBlank` and 
-`@Positive` annotations constrain the `destination` map so that the destination name 
-is not blank, and the distance is positive. The `@Positive` constraint ensures that 
-numeric value fields are greater than 0.
+Validation 2.0, you can specify constraints on type parameters. The [hotspot=24 file=1]`@NotBlank` 
+and [hotspot=24 file=1]`@Positive` annotations constrain the [hotspot=24 file=1]`destination` 
+map so that the destination name is not blank, and the distance is positive. The 
+[hotspot=24 file=1]`@Positive` constraint ensures that numeric value fields are greater 
+than 0.
 
 * A correctly formatted serial number is required. In addition to specifying the 
 built-in constraints, you can create custom constraints to allow user-defined validation
-rules. The `@SerialNumber` annotation that constrains the `serialNumber` field is a 
-custom constraint, which will be created later.
+rules. The [hotspot=26 file=1]`@SerialNumber` annotation that constrains the 
+[hotspot=27 file=1]`serialNumber` field is a custom constraint, which will be created later.
 
-Because you already specified constraints on the `Astronaut` bean, the constraints do 
-not need to be respecified in the `Spacecraft` bean. Instead, because of the `@Valid` 
-annotation on the field, all the nested constraints on the `Astronaut` bean are 
-validated.
+Because you already specified constraints on the [hotspot=11-50 file=0]`Astronaut` bean, 
+the constraints do not need to be respecified in the [hotspot=17-63 file=1]`Spacecraft` 
+bean. Instead, because of the [hotspot=21 file=1]`@Valid` annotation on the field, all 
+the nested constraints on the [hotspot=11-50 file=0]`Astronaut` bean are validated.
 
 You can also use bean validation with CDI to provide method-level validation. The
-`launchSpacecraft` method on the `Spacecraft` bean accepts a `launchCode` parameter, 
-and if the `launchCode` parameter is `OpenLiberty`, the method returns `true` that the 
-spacecraft is launched. Otherwise, the method returns `false`. The `launchSpacecraft` 
-method uses both parameter and return value validation. The `@NotNull` constraint 
-eliminates the need to manually check within the method that the parameter is not null. 
-Additionally, the method has the `@AssertTrue` return-level constraint to enforce that 
-the method must return the `true` boolean.
+[hotspot=58-62 file=1]`launchSpacecraft` method on the [hotspot=17-63 file=1]`Spacecraft` 
+bean accepts a [hotspot=58 file=1]`launchCode` parameter, and if the [hotspot=58 file=1]`launchCode` 
+parameter is [hotspot=59 file=1]`OpenLiberty`, the method returns [hotspot=60 file=1]`true` 
+that the spacecraft is launched. Otherwise, the method returns [hotspot=61 file=1]`false`. 
+The [hotspot=58-62 file=1]`launchSpacecraft` method uses both parameter and return value 
+validation. The [hotspot=58 file=1]`@NotNull` constraint eliminates the need to manually 
+check within the method that the parameter is not null. Additionally, the method has the 
+[hotspot=57 file=1]`@AssertTrue` return-level constraint to enforce that the method must 
+return the `true` boolean.
 
 // ==================================================================================
 // Creating custom constraints
@@ -387,3 +401,4 @@ You developed and tested a Java microservice by using bean validation and Open
 Liberty.
 
 include::{common-includes}/finish.adoc[]
+include::https://raw.githubusercontent.com/OpenLiberty/guides-common/multipane/attribution.adoc[subs="attributes"]
