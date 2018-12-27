@@ -37,7 +37,6 @@ public class BeanValidationTest {
 	private Client client;
 	private static String port;
 
-
     @Before
     public void setup() {
     	client = ClientBuilder.newClient();
