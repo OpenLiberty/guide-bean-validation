@@ -328,9 +328,9 @@ include::{common-includes}/mvnbuild.adoc[]
 
 Navigate to the `http://localhost:9080/openapi/ui` URL. Expand the
 `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
-section and click *Try it out*. Copy the following example input into the text box:
+section and click `Try it out`. Copy the following example input into the text box:
 
-[source]
+[role='command']
 ----
 {
   "astronaut": {
@@ -345,7 +345,7 @@ section and click *Try it out*. Copy the following example input into the text b
 }
 ----
 
-Click *Execute* and you receive the response `No Constraint Violations` because
+Click `Execute` and you receive the response `No Constraint Violations` because
 the values specified pass previously defined constraints.
 
 Next, modify the following values, all of which break the previously defined
@@ -358,7 +358,7 @@ Email = libbybot
 SerialNumber = Liberty1
 ----
 
-After you click *Execute*, the response contains the following constraint
+After you click `Execute`, the response contains the following constraint
 violations:
 
 [source, role="no_copy"]
