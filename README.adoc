@@ -384,7 +384,7 @@ include::{common-includes}/mvncompile.adoc[]
 
 Now, write automated tests to drive the previously created service. 
 
-[role='code_command hotspot=16-23', subs='quotes']
+[role='code_command hotspot=23-138', subs='quotes']
 ---- 
 Create `BeanValidationTest` class.
 `src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java`
@@ -393,7 +393,7 @@ Create `BeanValidationTest` class.
 BeanValidationTest.java
 [source, java, linenums, role='code_column']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=**;!copyright]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=!copyright]
 ----
 
 The [hotspot=28 file=0]`@Before` annotation causes the [hotspot=29-32 file=0]`setup` method 
