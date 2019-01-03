@@ -411,9 +411,9 @@ the appropriate constraint violations occur when data that is supplied to the
 [hotspot=68-71 file=0]`Astronaut` and [hotspot=73-75 file=0]`Spacecraft` attributes violates 
 the defined constraints. Because 3 constraint violations are defined, 3 `ConstraintViolation` 
 objects are returned as a set from the [hotspot=83-84 file=0]`validate` call. The 3 expected 
-messages are [hotspot=87 file=0]`must be greater than 0` for the negative distance specified 
-in the destination map, [hotspot=91 file=0]`must be a well-formed email address` for the 
-incorrect email address, and the custom [hotspot=95 file=0]`serial number is not valid` 
+messages are "[hotspot=87 file=0]`must be greater than 0`" for the negative distance specified 
+in the destination map, "[hotspot=91 file=0]`must be a well-formed email address`" for the 
+incorrect email address, and the custom "[hotspot=95 file=0]`serial number is not valid`" 
 message for the serial number.
 
 * The [hotspot=101-112 file=0]`testNoMethodLevelConstraintViolations` test case verifies 
