@@ -65,7 +65,7 @@ include::{common-includes}/gitclone.adoc[]
 [role='command']
 include::{common-includes}/trywhatyoubuild-intro.adoc[]
 
-Point your browser to the `http://localhost:9080/openapi/ui` URL. You see the OpenAPI
+Point your browser to the http://localhost:9080/openapi/ui URL. You see the OpenAPI
 user interface documenting the REST endpoints used in this guide. If you are interested
 in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs]. 
 Expand the `/beanvalidation/validatespacecraft POST request to validate your
@@ -124,7 +124,7 @@ Navigate to the `start` directory to begin.
 First, create the JavaBeans to be constrained. 
 [role="code_command hotspot=11-50 file=0", subs="quotes"] 
 ---- 
-Create the `Astronaut` class.
+#Create the `Astronaut` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java`
 ---- 
 
@@ -223,7 +223,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.ja
 
 [role='code_command hotspot=16-23 file=1', subs='quotes']
 ---- 
-Create the annotation.
+#Create the annotation.#
 `src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java`
 ---- 
 
@@ -253,7 +253,7 @@ constraint.
 
 [role='code_command hotspot=6-24 file=2', subs='quotes']
 ---- 
-Create the `SerialNumberValidator` class.
+#Create the `SerialNumberValidator` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java`
 ---- 
 
@@ -291,7 +291,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 
 [role='code_command hotspot=21-72 file=2', subs='quotes']
 ---- 
-Create the `BeanValidationEndpoint` class .
+#Create the `BeanValidationEndpoint` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java`
 ---- 
 
@@ -327,7 +327,7 @@ exception if either of the method-level constraints is violated.
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
-Navigate to the `http://localhost:9080/openapi/ui` URL. Expand the
+Navigate to the http://localhost:9080/openapi/ui URL. Expand the
 `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click `Try it out`. Copy the following example input into the text box:
 
@@ -387,7 +387,7 @@ Now, write automated tests to drive the previously created service.
 
 [role='code_command hotspot=23-138', subs='quotes']
 ---- 
-Create `BeanValidationTest` class.
+#Create `BeanValidationTest` class.#
 `src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java`
 ---- 
 
