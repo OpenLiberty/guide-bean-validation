@@ -159,7 +159,7 @@ annotation on the getter method, which has the same effect.
 
 [role='code_command hotspot=17-63 file=1', subs='quotes']
 ---- 
-Create the `Spacecraft` class.
+#Create the `Spacecraft` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java`
 ---- 
 
