@@ -122,7 +122,7 @@ include::{common-includes}/trywhatyoubuild-end.adoc[]
 Navigate to the `start` directory to begin.
 
 First, create the JavaBeans to be constrained. 
-[role="code_command hotspot=11-50 file=0", subs="quotes"] 
+[role="code_command hotspot file=0", subs="quotes"] 
 ---- 
 #Create the `Astronaut` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java`
@@ -157,7 +157,7 @@ field check that the astronaut is between the ages of 18 and 100.
 In this example, the annotation is on the field value itself. You can also place the 
 annotation on the getter method, which has the same effect.
 
-[role='code_command hotspot=17-63 file=1', subs='quotes']
+[role='code_command hotspot file=1', subs='quotes']
 ---- 
 #Create the `Spacecraft` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java`
@@ -221,7 +221,7 @@ Spacecraft.java
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
 ----
 
-[role='code_command hotspot=16-23 file=1', subs='quotes']
+[role='code_command hotspot file=1', subs='quotes']
 ---- 
 #Create the annotation.#
 `src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java`
@@ -251,7 +251,7 @@ constraint only with certain groups or payloads. The defaults are used in the ex
 Now, create the class that provides the validation for the [hotspot=26 file=0]`@SerialNumber` 
 constraint.
 
-[role='code_command hotspot=6-24 file=2', subs='quotes']
+[role='code_command hotspot file=2', subs='quotes']
 ---- 
 #Create the `SerialNumberValidator` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java`
@@ -289,7 +289,7 @@ Astronaut.java
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
 ----
 
-[role='code_command hotspot=21-72 file=2', subs='quotes']
+[role='code_command hotspot file=2', subs='quotes']
 ---- 
 #Create the `BeanValidationEndpoint` class.#
 `src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java`
@@ -385,7 +385,7 @@ include::{common-includes}/mvncompile.adoc[]
 
 Now, write automated tests to drive the previously created service. 
 
-[role='code_command hotspot=23-138', subs='quotes']
+[role='code_command hotspot', subs='quotes']
 ---- 
 #Create `BeanValidationTest` class.#
 `src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java`
