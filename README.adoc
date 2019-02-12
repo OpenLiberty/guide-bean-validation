@@ -65,7 +65,7 @@ include::{common-includes}/gitclone.adoc[]
 [role='command']
 include::{common-includes}/trywhatyoubuild-intro.adoc[]
 
-Point your browser to the http://localhost:9080/openapi/ui URL. You see the OpenAPI
+Point your browser to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL. You see the OpenAPI
 user interface documenting the REST endpoints used in this guide. If you are interested
 in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs^]. 
 Expand the `/beanvalidation/validatespacecraft POST request to validate your
@@ -327,7 +327,7 @@ exception if either of the method-level constraints is violated.
 [role='command']
 include::{common-includes}/mvnbuild.adoc[]
 
-Navigate to the http://localhost:9080/openapi/ui URL. Expand the
+Navigate to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL. Expand the
 `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click `Try it out`. Copy the following example input into the text box:
 
