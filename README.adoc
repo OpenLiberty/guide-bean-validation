@@ -67,7 +67,7 @@ include::{common-includes}/trywhatyoubuild-intro.adoc[]
 
 Point your browser to the http://localhost:9080/openapi/ui URL. You see the OpenAPI
 user interface documenting the REST endpoints used in this guide. If you are interested
-in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs]. 
+in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs^]. 
 Expand the `/beanvalidation/validatespacecraft POST request to validate your
 spacecraft bean` section and click *Try it out*. Copy the following example input
 into the text box:
@@ -174,7 +174,7 @@ The [hotspot=17-63 file=1]`Spacecraft` bean contains 3 fields, [hotspot=22 file=
 needs to be a CDI managed bean to allow for method-level validation, which uses CDI 
 interceptions. Because the [hotspot=17-63 file=1]`Spacecraft` bean is a CDI managed bean, 
 a scope is necessary. A request scope is used in this example. To learn more about CDI, see 
-https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices].
+https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^].
 
 
 The [hotspot=17-63 file=1]`Spacecraft` class has the following constraints applied:
