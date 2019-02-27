@@ -10,7 +10,6 @@
  *     IBM Corporation - initial API and implementation
  *******************************************************************************/
 // end::copyright[]
-
 package io.openliberty.guides.beanvalidation;
 
 import javax.validation.ConstraintValidator;
