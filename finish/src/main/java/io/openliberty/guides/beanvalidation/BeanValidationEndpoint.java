@@ -63,7 +63,7 @@ public class BeanValidationEndpoint {
             .append(System.lineSeparator());
         }
         return sb.toString();
-	}
+    }
 	
     @POST
     @Path("/launchspacecraft")
