@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018 IBM Corporation and others.
+ * Copyright (c) 2018, 2019 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -34,12 +34,12 @@ import org.junit.Before;
 
 public class BeanValidationTest {
 
-	private Client client;
-	private static String port;
+    private Client client;
+    private static String port;
 
     @Before
     public void setup() {
-    	client = ClientBuilder.newClient();
+        client = ClientBuilder.newClient();
         port = System.getProperty("liberty.test.port");
     }
     
@@ -59,9 +59,9 @@ public class BeanValidationTest {
         spacecraft.setAstronaut(astronaut);
         spacecraft.setSerialNumber("Liberty1001");
         
-    	HashMap<String, Integer> destinations = new HashMap<String, Integer>();
-    	destinations.put("Mars", 1500);
-    	destinations.put("Pluto", 10000);
+        HashMap<String, Integer> destinations = new HashMap<String, Integer>();
+        destinations.put("Mars", 1500);
+        destinations.put("Pluto", 10000);
         spacecraft.setDestinations(destinations);
         
         Jsonb jsonb = JsonbBuilder.create();
@@ -87,7 +87,7 @@ public class BeanValidationTest {
         spacecraft.setSerialNumber("Liberty123");
         
         HashMap<String, Integer> destinations = new HashMap<String, Integer>();
-    	destinations.put("Mars", -100);
+        destinations.put("Mars", -100);
         spacecraft.setDestinations(destinations);
         
         Jsonb jsonb = JsonbBuilder.create();
@@ -98,15 +98,15 @@ public class BeanValidationTest {
         
         String expectedDestinationResponse = "must be greater than 0";
         assertTrue("Expected response to contain: " + expectedDestinationResponse,
-        		 actualResponse.contains(expectedDestinationResponse));
+                actualResponse.contains(expectedDestinationResponse));
         
         String expectedEmailResponse = "must be a well-formed email address";
         assertTrue("Expected response to contain: " + expectedEmailResponse,
-       		 actualResponse.contains(expectedEmailResponse));
+                actualResponse.contains(expectedEmailResponse));
 
         String expectedSerialNumberResponse = "serial number is not valid";
         assertTrue("Expected response to contain: " + expectedSerialNumberResponse,
-          		 actualResponse.contains(expectedSerialNumberResponse));
+                actualResponse.contains(expectedSerialNumberResponse));
     }
 
     @Test
@@ -136,15 +136,15 @@ public class BeanValidationTest {
     
     private Response postResponse(String url, String value, 
                                   boolean isMethodLevel) {
-    	if(isMethodLevel)
+        if(isMethodLevel)
             return client.target(url).request().post(Entity.text(value));
-    	else
-    		return client.target(url).request().post(Entity.entity(value, 
-    		        MediaType.APPLICATION_JSON));
+        else
+            return client.target(url).request().post(Entity.entity(value, 
+                MediaType.APPLICATION_JSON));
     }
 
     private String getURL(String port, String function) {
-    	return "http://localhost:" + port + "/Spacecraft/beanvalidation/" + 
+        return "http://localhost:" + port + "/Spacecraft/beanvalidation/" + 
                 function;
     }
 }
