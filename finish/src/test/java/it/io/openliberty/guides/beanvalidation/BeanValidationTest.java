@@ -93,20 +93,20 @@ public class BeanValidationTest {
         Jsonb jsonb = JsonbBuilder.create();
         String spacecraftJSON = jsonb.toJson(spacecraft);
         Response response = postResponse(getURL(port, "validatespacecraft"), 
-            spacecraftJSON, false);
+                spacecraftJSON, false);
         String actualResponse = response.readEntity(String.class);
         
         String expectedDestinationResponse = "must be greater than 0";
         assertTrue("Expected response to contain: " + expectedDestinationResponse,
-            actualResponse.contains(expectedDestinationResponse));
+                actualResponse.contains(expectedDestinationResponse));
         
         String expectedEmailResponse = "must be a well-formed email address";
         assertTrue("Expected response to contain: " + expectedEmailResponse,
-       	    actualResponse.contains(expectedEmailResponse));
+                actualResponse.contains(expectedEmailResponse));
 
         String expectedSerialNumberResponse = "serial number is not valid";
         assertTrue("Expected response to contain: " + expectedSerialNumberResponse,
-            actualResponse.contains(expectedSerialNumberResponse));
+                actualResponse.contains(expectedSerialNumberResponse));
     }
 
     @Test
