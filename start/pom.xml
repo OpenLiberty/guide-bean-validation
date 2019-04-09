@@ -59,7 +59,7 @@
         </dependency>
         <dependency>
             <groupId>io.openliberty.features</groupId>
-            <artifactId>mpOpenAPI-1.0</artifactId>
+            <artifactId>mpOpenAPI-1.1</artifactId>
             <type>esa</type>
             <scope>provided</scope>
         </dependency>
