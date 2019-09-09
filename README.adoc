@@ -10,7 +10,7 @@
 :page-duration: 20 minutes
 :page-releasedate: 2018-08-24
 :page-description: Explore the use of bean validation to validate user input data for microservices.
-:page-tags: ['Java EE']
+:page-tags: ['Java EE', 'Jakarta EE']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
