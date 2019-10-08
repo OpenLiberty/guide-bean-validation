@@ -36,23 +36,29 @@ public class BeanValidationEndpoint {
     Validator validator;
     
     @Inject
+    // tag::Spacecraft[]
     Spacecraft bean;
+    // end::Spacecraft[]
 
     @POST
     @Path("/validatespacecraft")
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "POST request to validate your spacecraft bean")
+    // tag::validateSpacecraftp[]
     public String validateSpacecraft(
                 @RequestBody(description = "Specify the values to create the "
            		+ "Astronaut and Spacecraft beans.", 
            	    content = @Content(mediaType = "application/json", 
                 schema = @Schema(implementation = Spacecraft.class)))
                 Spacecraft spacecraft) {	
-				
+		// tag::ConstraintViolation[]
         Set<ConstraintViolation<Spacecraft>> violations
+        // end::ConstraintViolation[]
+        // tag::validate[]
         = validator.validate(spacecraft);
-		
+        // end::validate[]
+
         if(violations.size() == 0) {
             return "No Constraint Violations";
         }
@@ -64,11 +70,12 @@ public class BeanValidationEndpoint {
         }
         return sb.toString();
     }
-	
+	// end::validateSpacecraft[]
     @POST
     @Path("/launchspacecraft")
     @Produces(MediaType.TEXT_PLAIN)
     @Operation(summary = "POST request to specify a launch code")
+    // tag::launchSpacecraft[]
     public String launchSpacecraft(
             @RequestBody(description = "Enter the launch code.  Must not be "
             		+ "null and must equal OpenLiberty for successful launch.",
@@ -81,4 +88,5 @@ public class BeanValidationEndpoint {
             return ex.getMessage();
         }
     }
+    // end::launchSpacecraft[]
 }

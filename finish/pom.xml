@@ -8,7 +8,7 @@
     </parent>
 
     <groupId>io.openliberty.guides</groupId>
-    <artifactId>beanvalidation</artifactId>
+    <artifactId>guide-bean-validation</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -41,7 +41,7 @@
         <!-- Open Liberty features -->
         <dependency>
             <groupId>io.openliberty.features</groupId>
-            <artifactId>beanValidation-2.0</artifactId>
+            <artifactId>guide-bean-validation-2.0</artifactId>
             <type>esa</type>
             <scope>provided</scope>
         </dependency>

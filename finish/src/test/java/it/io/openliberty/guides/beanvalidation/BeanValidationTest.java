@@ -36,29 +36,36 @@ public class BeanValidationTest {
 
     private Client client;
     private static String port;
-
+    // tag::Before[]
     @Before
+    // end::Before[]
+    // tag::setup[]
     public void setup() {
+        // tag::Client[]
         client = ClientBuilder.newClient();
+        // end::Client[]
         port = System.getProperty("liberty.test.port");
     }
-    
+    // end::setup[]
     @After
     public void teardown() {
         client.close();
     }
 
     @Test
+    // tag::testNoFieldLevelConstraintViolations[]
     public void testNoFieldLevelConstraintViolations() throws Exception {
+        // tag::Astronaut[]
         Astronaut astronaut = new Astronaut();
         astronaut.setAge(25);
         astronaut.setEmailAddress("libby@openliberty.io");
         astronaut.setName("Libby");
-        
+        // end::Astronaut[]
+        // tag::Spacecraft[]
         Spacecraft spacecraft = new Spacecraft();
         spacecraft.setAstronaut(astronaut);
         spacecraft.setSerialNumber("Liberty1001");
-        
+        // end::Spacecraft[]
         HashMap<String, Integer> destinations = new HashMap<String, Integer>();
         destinations.put("Mars", 1500);
         destinations.put("Pluto", 10000);
@@ -74,8 +81,9 @@ public class BeanValidationTest {
         assertEquals("Unexpected response when validating beans.", 
                 expectedResponse, actualResponse);
     }
-
+    // end::testNoFieldLevelConstraintViolations[]
     @Test
+    // tag::testFieldLevelConstraintViolation[]
     public void testFieldLevelConstraintViolation() throws Exception {
         Astronaut astronaut = new Astronaut();
         astronaut.setAge(25);
@@ -92,27 +100,37 @@ public class BeanValidationTest {
         
         Jsonb jsonb = JsonbBuilder.create();
         String spacecraftJSON = jsonb.toJson(spacecraft);
+        // tag::Response[]
         Response response = postResponse(getURL(port, "validatespacecraft"), 
                 spacecraftJSON, false);
+        // end::Response[]
         String actualResponse = response.readEntity(String.class);
-        
+        // tag::expectedDestinationResponse[]
         String expectedDestinationResponse = "must be greater than 0";
+        // end::expectedDestinationResponse[]
         assertTrue("Expected response to contain: " + expectedDestinationResponse,
                 actualResponse.contains(expectedDestinationResponse));
-        
+        // tag::expectedEmailResponse[]
         String expectedEmailResponse = "must be a well-formed email address";
+        // end::expectedEmailResponse[]
         assertTrue("Expected response to contain: " + expectedEmailResponse,
                 actualResponse.contains(expectedEmailResponse));
-
+        // tag::expectedSerialNumberResponse[]
         String expectedSerialNumberResponse = "serial number is not valid";
+        // end::expectedSerialNumberResponse[]
         assertTrue("Expected response to contain: " + expectedSerialNumberResponse,
                 actualResponse.contains(expectedSerialNumberResponse));
     }
-
+    // end::testFieldLevelConstraintViolation[]
     @Test
+    // tag::testNoMethodLevelConstraintViolations[]
     public void testNoMethodLevelConstraintViolations() throws Exception {
+        // tag::OpenLiberty[]
         String launchCode = "OpenLiberty";
+        // end::OpenLiberty[]
+        // tag::launchSpacecraft[]
         Response response = postResponse(getURL(port, "launchspacecraft"), 
+        // end::launchSpacecraft[]
                 launchCode, true);
         
         String actualResponse = response.readEntity(String.class);
@@ -122,16 +140,20 @@ public class BeanValidationTest {
                 expectedResponse, actualResponse);
        
     }
-
+    // end::testNoMethodLevelConstraintViolations[]
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
+        // tag::incorrectCode[]
         String launchCode = "incorrectCode";
+        // end::incorrectCode[]
         Response response = postResponse(getURL(port, "launchspacecraft"), 
                 launchCode, true);
         
         String actualResponse = response.readEntity(String.class);
         assertTrue("Unexpected response from call to launchSpacecraft",
+        // tag::actualResponse[]
         actualResponse.contains("must be true"));
+        // end::actualResponse[]
     }
     
     private Response postResponse(String url, String value, 

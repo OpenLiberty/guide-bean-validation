@@ -14,18 +14,21 @@ package io.openliberty.guides.beanvalidation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-
+// tag::SerialNumberValidator[]
 public class SerialNumberValidator implements ConstraintValidator<SerialNumber,
                                                                   Object> {
 
     @Override
+    // tag::isValid[]
     public boolean isValid(Object arg0, ConstraintValidatorContext arg1) {
         //Serial Numbers must start with Liberty followed by four numbers
         boolean isValid = false;
         if (arg0 == null)
             return isValid;
         String serialNumber = arg0.toString();
+        // tag::Liberty[]
         isValid = serialNumber.length() == 11 && serialNumber.startsWith("Liberty");
+        // end::Liberty[]
         try {
             Integer.parseInt(serialNumber.substring(7));
         } catch (Exception ex) {
@@ -33,4 +36,6 @@ public class SerialNumberValidator implements ConstraintValidator<SerialNumber,
         }
         return isValid;
     }
+    // end::isValid[]
 }
+// end::SerialNumberValidator[]
