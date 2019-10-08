@@ -45,7 +45,7 @@ public class BeanValidationEndpoint {
     @Produces(MediaType.TEXT_PLAIN)
     @Consumes(MediaType.APPLICATION_JSON)
     @Operation(summary = "POST request to validate your spacecraft bean")
-    // tag::validateSpacecraftp[]
+    // tag::validateSpacecraft[]
     public String validateSpacecraft(
                 @RequestBody(description = "Specify the values to create the "
            		+ "Astronaut and Spacecraft beans.", 

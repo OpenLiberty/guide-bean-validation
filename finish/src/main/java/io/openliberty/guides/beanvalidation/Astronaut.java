@@ -20,15 +20,16 @@ import javax.validation.constraints.Email;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 // tag::Astronaut[]
+
 public class Astronaut implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    // tag:NotBlank[]
+    // tag::NotBlank[]
     @NotBlank
     // end::NotBlank[]
     // tag::name[]
     private String name;
-    // end::end[] 
+    // end::name[] 
     // tag::Min[]
     @Min(18)
     // end::Min[]

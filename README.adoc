@@ -197,7 +197,7 @@ bean. Instead, because of the [hotspot=Valid file=1]`@Valid` annotation on the f
 the nested constraints on the [hotspot=Astronaut file=0]`Astronaut` bean are validated.
 
 You can also use bean validation with CDI to provide method-level validation. The
-[hotspot=launchSpacescraft file=1]`launchSpacecraft` method on the [hotspot=Spacecraft file=1]`Spacecraft` 
+[hotspot=launchSpacecraft file=1]`launchSpacecraft` method on the [hotspot=Spacecraft file=1]`Spacecraft` 
 bean accepts a [hotspot=launchCode file=1]`launchCode` parameter, and if the [hotspot=launchCode file=1]`launchCode` 
 parameter is [hotspot=OpenLiberty file=1]`OpenLiberty`, the method returns [hotspot=true file=1]`true` 
 that the spacecraft is launched. Otherwise, the method returns [hotspot=false file=1]`false`. 
@@ -234,7 +234,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.
 ----
 
 The [hotspot=Target file=1]`@Target` annotation indicates the element types to which you can 
-apply the custom constraint. Because the [hotspot=serialNum file=0]`@SerialNumber` constraint is 
+apply the custom constraint. Because the [hotspot=SerialNum file=0]`@SerialNumber` constraint is 
 used only on a field, only the [hotspot=Target file=1]`FIELD` target is specified.
 
 When you define a constraint annotation, the specification requires the [hotspot=Retention file=1]`RUNTIME` 

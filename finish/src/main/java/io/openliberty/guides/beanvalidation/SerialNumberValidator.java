@@ -14,6 +14,7 @@ package io.openliberty.guides.beanvalidation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+
 // tag::SerialNumberValidator[]
 public class SerialNumberValidator implements ConstraintValidator<SerialNumber,
                                                                   Object> {
