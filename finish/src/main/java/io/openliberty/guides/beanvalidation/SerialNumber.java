@@ -23,6 +23,7 @@ import javax.validation.Payload;
 // tag::Target[]
 @Target({ FIELD })
 // end::Target[]
+
 // tag::Retention[]
 @Retention(RUNTIME)
 // end::Retention[]

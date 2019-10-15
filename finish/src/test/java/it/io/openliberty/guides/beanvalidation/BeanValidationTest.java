@@ -39,6 +39,7 @@ public class BeanValidationTest {
     // tag::Before[]
     @Before
     // end::Before[]
+
     // tag::setup[]
     public void setup() {
         // tag::Client[]
@@ -47,6 +48,7 @@ public class BeanValidationTest {
         port = System.getProperty("liberty.test.port");
     }
     // end::setup[]
+
     @After
     public void teardown() {
         client.close();
@@ -82,6 +84,7 @@ public class BeanValidationTest {
                 expectedResponse, actualResponse);
     }
     // end::testNoFieldLevelConstraintViolations[]
+
     @Test
     // tag::testFieldLevelConstraintViolation[]
     public void testFieldLevelConstraintViolation() throws Exception {
@@ -122,6 +125,7 @@ public class BeanValidationTest {
                 actualResponse.contains(expectedSerialNumberResponse));
     }
     // end::testFieldLevelConstraintViolation[]
+
     @Test
     // tag::testNoMethodLevelConstraintViolations[]
     public void testNoMethodLevelConstraintViolations() throws Exception {
@@ -130,8 +134,8 @@ public class BeanValidationTest {
         // end::OpenLiberty[]
         // tag::launchSpacecraft[]
         Response response = postResponse(getURL(port, "launchspacecraft"), 
-        // end::launchSpacecraft[]
                 launchCode, true);
+        // end::launchSpacecraft[]
         
         String actualResponse = response.readEntity(String.class);
         String expectedResponse = "launched";
@@ -141,6 +145,7 @@ public class BeanValidationTest {
        
     }
     // end::testNoMethodLevelConstraintViolations[]
+
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
         // tag::incorrectCode[]

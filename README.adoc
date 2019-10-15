@@ -134,14 +134,14 @@ Astronaut.java
 include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[]
 ----
 
-The bean stores the attributes of an astronaut, [hotspot=name file=0]`name`, [hotspot=age file=0]`age`, 
+The bean stores the attributes of an astronaut, [hotspot=Name file=0]`name`, [hotspot=age file=0]`age`, 
 and [hotspot=emailAddress file=0]`emailAddress`, and provides getters and setters to access and set 
 the values.
 
 The [hotspot=Astronaut file=0]`Astronaut` class has the following constraints applied:
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
-[hotspot=NotBlank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
+[hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
 one non-whitespace character. The annotation constrains the [hotspot=name file=0]`name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
@@ -180,7 +180,7 @@ https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microse
 The [hotspot=Spacecraft file=1]`Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean 
-Validation 2.0, you can specify constraints on type parameters. The [hotspot=Notblank file=1]`@NotBlank` 
+Validation 2.0, you can specify constraints on type parameters. The [hotspot=Map file=1]`@NotBlank` 
 and [hotspot=Map file=1]`@Positive` annotations constrain the [hotspot=Map file=1]`destinations` 
 map so that the destination name is not blank, and the distance is positive. The 
 [hotspot=Map file=1]`@Positive` constraint ensures that numeric value fields are greater 
@@ -188,7 +188,7 @@ than 0.
 
 * A correctly formatted serial number is required. In addition to specifying the 
 built-in constraints, you can create custom constraints to allow user-defined validation
-rules. The [hotspot=SerialNum file=1]`@SerialNumber` annotation that constrains the 
+rules. The [hotspot=serial-num file=1]`@SerialNumber` annotation that constrains the 
 [hotspot=serialNumber file=1]`serialNumber` field is a custom constraint, which will be created later.
 
 Because you already specified constraints on the [hotspot=Astronaut file=0]`Astronaut` bean, 
@@ -197,11 +197,11 @@ bean. Instead, because of the [hotspot=Valid file=1]`@Valid` annotation on the f
 the nested constraints on the [hotspot=Astronaut file=0]`Astronaut` bean are validated.
 
 You can also use bean validation with CDI to provide method-level validation. The
-[hotspot=launchSpacecraft file=1]`launchSpacecraft` method on the [hotspot=Spacecraft file=1]`Spacecraft` 
+[hotspot=launch-Spacecraft file=1]`launchSpacecraft` method on the [hotspot=Spacecraft file=1]`Spacecraft` 
 bean accepts a [hotspot=launchCode file=1]`launchCode` parameter, and if the [hotspot=launchCode file=1]`launchCode` 
 parameter is [hotspot=OpenLiberty file=1]`OpenLiberty`, the method returns [hotspot=true file=1]`true` 
 that the spacecraft is launched. Otherwise, the method returns [hotspot=false file=1]`false`. 
-The [hotspot=launchSpacescraft file=1]`launchSpacecraft` method uses both parameter and return value 
+The [hotspot=launch-Spacescraft file=1]`launchSpacecraft` method uses both parameter and return value 
 validation. The [hotspot=launchCode file=1]`@NotNull` constraint eliminates the need to manually 
 check within the method that the parameter is not null. Additionally, the method has the 
 [hotspot=AssertTrue file=1]`@AssertTrue` return-level constraint to enforce that the method must 
@@ -212,7 +212,7 @@ return the `true` boolean.
 // ==================================================================================
 == Creating custom constraints
 
-To create the custom constraint for [hotspot=SerialNum file=0]`@SerialNumber`, begin by creating 
+To create the custom constraint for [hotspot=serial-num file=0]`@SerialNumber`, begin by creating 
 an annotation.
 
 Spacecraft.java
@@ -234,7 +234,7 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.
 ----
 
 The [hotspot=Target file=1]`@Target` annotation indicates the element types to which you can 
-apply the custom constraint. Because the [hotspot=SerialNum file=0]`@SerialNumber` constraint is 
+apply the custom constraint. Because the [hotspot=serial-num file=0]`@SerialNumber` constraint is 
 used only on a field, only the [hotspot=Target file=1]`FIELD` target is specified.
 
 When you define a constraint annotation, the specification requires the [hotspot=Retention file=1]`RUNTIME` 
@@ -307,7 +307,7 @@ injection. However, you can also obtain the default validator with resource inje
 or a JNDI lookup. The [hotspot=Spacecraft file=0]`Spacecraft` JavaBean is injected so that the 
 method-level constraints can be validated.
 
-The programmatic validation takes place in the [hotspot=validateSpacecraft file=2]`validateSpacecraft` 
+The programmatic validation takes place in the [hotspot=validate-Spacecraft file=2]`validateSpacecraft` 
 method. To validate the data, the [hotspot=validate file=2]`validate` method is called on the 
 [hotspot=Spacecraft file=0]`Spacecraft` bean. Because the [hotspot=Spacecraft file=0]`Spacecraft` 
 bean contains the [hotspot=Valid file=0]`@Valid` constraint on the [hotspot=Astronaut file=1]`Astronaut` 

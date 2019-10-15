@@ -33,15 +33,19 @@ public class Spacecraft implements Serializable {
     // tag::Valid[]
     @Valid
     // end::Valid[]
+
     // tag::Astronaut[]
     private Astronaut astronaut;
     // end::Astronaut[]
+
     // tag::Map[]
     private Map<@NotBlank String, @Positive Integer> destinations;
     // end::Map[]
-    // tag::SerialNum[]
+
+    // tag::serial-num[]
     @SerialNumber
-    // end::SerialNum[]
+    // end::serial-num[]
+
     // tag::serialNumber[]
     private String serialNumber;
     // end::serialNumber[]
@@ -76,7 +80,8 @@ public class Spacecraft implements Serializable {
     // tag::AssertTrue[]
     @AssertTrue
     // end::AssertTrue[]
-    // tag::launchSpacecraft[]
+    
+    // tag::launch-Spacecraft[]
     // tag::launchCode[]
     public boolean launchSpacecraft(@NotNull String launchCode) {
     // end::launchCode[]
@@ -90,6 +95,6 @@ public class Spacecraft implements Serializable {
         return false;
         // end::false[]
     }
-    // end::launchSpacecraft[]
+    // end::launch-Spacecraft[]
 }
 // end::Spacecraft[]
