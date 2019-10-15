@@ -41,7 +41,7 @@
         <!-- Open Liberty features -->
         <dependency>
             <groupId>io.openliberty.features</groupId>
-            <artifactId>guide-bean-validation-2.0</artifactId>
+            <artifactId>beanValidation-2.0</artifactId>
             <type>esa</type>
             <scope>provided</scope>
         </dependency>

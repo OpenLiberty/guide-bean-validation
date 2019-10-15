@@ -129,9 +129,9 @@ First, create the JavaBeans to be constrained.
 ---- 
 
 Astronaut.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[]
 ----
 
 The bean stores the attributes of an astronaut, [hotspot=name file=0]`name`, [hotspot=age file=0]`age`, 
@@ -164,9 +164,9 @@ annotation on the getter method, which has the same effect.
 ---- 
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 The [hotspot=Spacecraft file=1]`Spacecraft` bean contains 3 fields, [hotspot=Astronaut file=1]`astronaut`, 
@@ -216,9 +216,9 @@ To create the custom constraint for [hotspot=SerialNum file=0]`@SerialNumber`, b
 an annotation.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 [role='code_command hotspot file=1', subs='quotes']
@@ -228,9 +228,9 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.ja
 ---- 
 
 SerialNumber.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java[]
 ----
 
 The [hotspot=Target file=1]`@Target` annotation indicates the element types to which you can 
@@ -258,9 +258,9 @@ constraint.
 ---- 
 
 SerialNumberValidator.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java[]
 ----
 
 The [hotspot=SerialNumberValidator file=2]`SerialNumberValidator` class has one method, [hotspot=isValid file=2]`isValid()`, 
@@ -278,15 +278,15 @@ Finally, create a service that can be used to programmatically validate the cons
 on the [hotspot=Spacecraft file=0]`Spacecraft` and [hotspot=Astronaut file=1]`Astronaut` JavaBeans.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 Astronaut.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[]
 ----
 
 [role='code_command hotspot file=2', subs='quotes']
@@ -296,9 +296,9 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 ---- 
 
 BeanValidationEndpoint.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[]
 ----
 
 Two resources, a validator and an instance of the [hotspot=Spacecraft file=2]`Spacecraft` JavaBean, 
@@ -392,9 +392,9 @@ Now, write automated tests to drive the previously created service.
 ---- 
 
 BeanValidationTest.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=!copyright]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[]
 ----
 
 The [hotspot=Before file=0]`@Before` annotation causes the [hotspot=setup file=0]`setup` method 
@@ -432,9 +432,9 @@ exception is thrown. The exception includes the constraint violation message, wh
 [hotspot=actualResponse file=0]`must be true` in this example.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 [role='command']
