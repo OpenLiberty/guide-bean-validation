@@ -146,6 +146,7 @@ public class BeanValidationTest {
     }
     // end::testNoMethodLevelConstraintViolations[]
 
+    // tag::testMethodLevelConstraintViolation[]
     @Test
     public void testMethodLevelConstraintViolation() throws Exception {
         // tag::incorrectCode[]
@@ -160,6 +161,7 @@ public class BeanValidationTest {
         actualResponse.contains("must be true"));
         // end::actualResponse[]
     }
+    // end::testMethodLevelConstraintViolation[]
     
     private Response postResponse(String url, String value, 
                                   boolean isMethodLevel) {

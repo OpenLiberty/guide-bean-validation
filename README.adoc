@@ -142,7 +142,7 @@ The [hotspot=Astronaut file=0]`Astronaut` class has the following constraints ap
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
 [hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
-one non-whitespace character. The annotation constrains the [hotspot=name file=0]`name` field.
+one non-whitespace character. The annotation constrains the [hotspot=Name file=0]`name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
 Bean Validation 2.0 is [hotspot=Email file=0]`@Email`, which can validate that the 
@@ -248,7 +248,7 @@ method provides the message that is output when a validation constraint is viola
 [hotspot=groups file=1]`groups()` and [hotspot=payload file=1]`payload()` methods associate this 
 constraint only with certain groups or payloads. The defaults are used in the example.
 
-Now, create the class that provides the validation for the [hotspot=SerialNum file=0]`@SerialNumber` 
+Now, create the class that provides the validation for the [hotspot=serial-num file=0]`@SerialNumber` 
 constraint.
 
 [role='code_command hotspot file=2', subs='quotes']
@@ -316,7 +316,7 @@ the [hotspot=validate file=2]`validate` method are returned as a set of [hotspot
 objects.
 
 The method level validation occurs in the [hotspot=launchSpacecraft file=2]`launchSpacecraft` method. 
-A call is then made to the [hotspot=launchSpacecraft file=0]`launchSpacecraft` method on the 
+A call is then made to the [hotspot=launch-Spacecraft file=0]`launchSpacecraft` method on the 
 [hotspot=Spacecraft file=0]`Spacecraft` bean, which throws a `ConstraintViolationException` 
 exception if either of the method-level constraints is violated.
 
@@ -417,7 +417,7 @@ incorrect email address, and the custom [hotspot=expectedSerialNumberResponse fi
 message for the serial number.
 
 * The [hotspot=testNoMethodLevelConstraintViolations file=0]`testNoMethodLevelConstraintViolations` test case verifies 
-that the method-level constraints that are specified on the [hotspot=launchSpacecraft file=1]`launchSpacecraft` 
+that the method-level constraints that are specified on the [hotspot=launch-Spacecraft file=1]`launchSpacecraft` 
 method of the [hotspot=Spacecraft file=1]`Spacecraft` bean are validated when the method is 
 called with no violations. In this test, the call to the [hotspot=launchSpacecraft file=0]`launchSpacecraft` 
 method is made with the [hotspot=OpenLiberty file=0]`OpenLiberty` argument. A value of `true` is 
@@ -426,7 +426,7 @@ returned, which passes the specified constraints.
 * The [hotspot=testMethodLevelConstraintViolation file=0]`testMethodLevelConstraintViolation` test case verifies 
 that a `ConstraintViolationException` exception is thrown when one of the method-level 
 constraints is violated. A call with an incorrect parameter, [hotspot=incorrectCode file=0]`incorrectCode`, 
-is made to the [hotspot=launchSpacecraft file=1]`launchSpacecraft` method of the [hotspot=Spacecraft file=1]`Spacecraft` 
+is made to the [hotspot=launch-Spacecraft file=1]`launchSpacecraft` method of the [hotspot=Spacecraft file=1]`Spacecraft` 
 bean. The method returns `false`, which violates the defined constraint, and a `ConstraintViolationException` 
 exception is thrown. The exception includes the constraint violation message, which is 
 [hotspot=actualResponse file=0]`must be true` in this example.

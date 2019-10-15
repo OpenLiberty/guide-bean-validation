@@ -31,8 +31,8 @@ import javax.validation.Payload;
 // tag::Constraint[]
 @Constraint(validatedBy = { SerialNumberValidator.class })
 // end::Constraint[]
-// tag::SerialNumber[]
 
+// tag::SerialNumber[]
 public @interface SerialNumber {
     // tag::message[]
     String message() default "serial number is not valid.";

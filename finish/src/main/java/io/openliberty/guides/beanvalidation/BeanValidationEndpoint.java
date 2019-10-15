@@ -70,7 +70,8 @@ public class BeanValidationEndpoint {
         }
         return sb.toString();
     }
-	// end::validate-Spacecraft[]
+    // end::validate-Spacecraft[]
+    
     @POST
     @Path("/launchspacecraft")
     @Produces(MediaType.TEXT_PLAIN)
