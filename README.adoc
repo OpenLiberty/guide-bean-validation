@@ -201,7 +201,7 @@ You can also use bean validation with CDI to provide method-level validation. Th
 bean accepts a [hotspot=launchCode file=1]`launchCode` parameter, and if the [hotspot=launchCode file=1]`launchCode` 
 parameter is [hotspot=OpenLiberty file=1]`OpenLiberty`, the method returns [hotspot=true file=1]`true` 
 that the spacecraft is launched. Otherwise, the method returns [hotspot=false file=1]`false`. 
-The [hotspot=launch-Spacescraft file=1]`launchSpacecraft` method uses both parameter and return value 
+The [hotspot=launchSpacescraft file=1]`launchSpacecraft` method uses both parameter and return value 
 validation. The [hotspot=launchCode file=1]`@NotNull` constraint eliminates the need to manually 
 check within the method that the parameter is not null. Additionally, the method has the 
 [hotspot=AssertTrue file=1]`@AssertTrue` return-level constraint to enforce that the method must 

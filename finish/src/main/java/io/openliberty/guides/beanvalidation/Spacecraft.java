@@ -81,7 +81,7 @@ public class Spacecraft implements Serializable {
     @AssertTrue
     // end::AssertTrue[]
     
-    // tag::launch-Spacecraft[]
+    // tag::launchSpacecraft[]
     // tag::launchCode[]
     public boolean launchSpacecraft(@NotNull String launchCode) {
     // end::launchCode[]
@@ -95,6 +95,6 @@ public class Spacecraft implements Serializable {
         return false;
         // end::false[]
     }
-    // end::launch-Spacecraft[]
+    // end::launchSpacecraft[]
 }
 // end::Spacecraft[]
