@@ -36,10 +36,10 @@ public class BeanValidationTest {
 
     private Client client;
     private static String port;
+
     // tag::Before[]
     @Before
     // end::Before[]
-
     // tag::setup[]
     public void setup() {
         // tag::Client[]

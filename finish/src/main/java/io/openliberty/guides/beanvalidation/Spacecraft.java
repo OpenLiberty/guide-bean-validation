@@ -30,10 +30,10 @@ import javax.validation.Valid;
 public class Spacecraft implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
     // tag::Valid[]
     @Valid
     // end::Valid[]
-
     // tag::Astronaut[]
     private Astronaut astronaut;
     // end::Astronaut[]
@@ -45,7 +45,6 @@ public class Spacecraft implements Serializable {
     // tag::serial-num[]
     @SerialNumber
     // end::serial-num[]
-
     // tag::serialNumber[]
     private String serialNumber;
     // end::serialNumber[]
@@ -77,10 +76,10 @@ public class Spacecraft implements Serializable {
     public String getSerialNumber() {
         return serialNumber;
     }
+
     // tag::AssertTrue[]
     @AssertTrue
     // end::AssertTrue[]
-    
     // tag::launchSpacecraft[]
     // tag::launchCode[]
     public boolean launchSpacecraft(@NotNull String launchCode) {

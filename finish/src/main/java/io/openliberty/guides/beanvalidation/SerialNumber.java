@@ -20,10 +20,10 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
+
 // tag::Target[]
 @Target({ FIELD })
 // end::Target[]
-
 // tag::Retention[]
 @Retention(RUNTIME)
 // end::Retention[]
@@ -31,15 +31,17 @@ import javax.validation.Payload;
 // tag::Constraint[]
 @Constraint(validatedBy = { SerialNumberValidator.class })
 // end::Constraint[]
-
 // tag::SerialNumber[]
 public @interface SerialNumber {
+
     // tag::message[]
     String message() default "serial number is not valid.";
     // end::message[]
+
     // tag::groups[]
     Class<?>[] groups() default {};
     // end::groups[]
+    
     // tag::payload[]
     Class<? extends Payload>[] payload() default {};
     // end::payload[]
