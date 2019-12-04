@@ -20,19 +20,34 @@ import javax.validation.constraints.Email;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
+// tag::Astronaut[]
 public class Astronaut implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
+    // tag::not-blank[]
     @NotBlank
+    // end::not-blank[]
+    // tag::Name[]
     private String name;
+    // end::Name[] 
 
+    // tag::Min[]
     @Min(18)
+    // end::Min[]
+    // tag::Max[]
     @Max(100)
+    // end::Max[]
+    // tag::age[]
     private Integer age;
+    // end::age[]
 
+    // tag::Email[]
     @Email
+    // end::Email[]
+    // tag::emailAddress[]
     private String emailAddress;
+    // end::emailAddress[]
 
     public Astronaut() {}
 
@@ -60,3 +75,4 @@ public class Astronaut implements Serializable {
         this.emailAddress = emailAddress;
     }
   }
+// end::Astronaut[]
