@@ -51,7 +51,8 @@ public class BeanValidationEndpoint {
            		+ "Astronaut and Spacecraft beans.", 
            	    content = @Content(mediaType = "application/json", 
                 schema = @Schema(implementation = Spacecraft.class)))
-                Spacecraft spacecraft) {	
+                Spacecraft spacecraft) {
+	    
 		// tag::ConstraintViolation[]
         Set<ConstraintViolation<Spacecraft>> violations
         // end::ConstraintViolation[]
