@@ -53,19 +53,19 @@ public class BeanValidationEndpoint {
                 schema = @Schema(implementation = Spacecraft.class)))
                 Spacecraft spacecraft) {
 	    
-		// tag::ConstraintViolation[]
+        // tag::ConstraintViolation[]
         Set<ConstraintViolation<Spacecraft>> violations
         // end::ConstraintViolation[]
         // tag::validate[]
-        = validator.validate(spacecraft);
+            = validator.validate(spacecraft);
         // end::validate[]
 
-        if(violations.size() == 0) {
+        if (violations.size() == 0) {
             return "No Constraint Violations";
         }
 				
         StringBuilder sb = new StringBuilder();
-        for(ConstraintViolation<Spacecraft> violation : violations) {
+        for (ConstraintViolation<Spacecraft> violation : violations) {
             sb.append("Constraint Violation Found: ").append(violation.getMessage())
             .append(System.lineSeparator());
         }
@@ -79,10 +79,10 @@ public class BeanValidationEndpoint {
     @Operation(summary = "POST request to specify a launch code")
     // tag::launchSpacecraft[]
     public String launchSpacecraft(
-            @RequestBody(description = "Enter the launch code.  Must not be "
+             @RequestBody(description = "Enter the launch code.  Must not be "
             		+ "null and must equal OpenLiberty for successful launch.",
-            content = @Content(mediaType = "text/plain"))
-            String launchCode) {	
+             content = @Content(mediaType = "text/plain"))
+             String launchCode) {	
         try {
             bean.launchSpacecraft(launchCode);
             return "launched";
