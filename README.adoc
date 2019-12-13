@@ -129,29 +129,29 @@ First, create the JavaBeans to be constrained.
 ---- 
 
 Astronaut.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[]
 ----
 
-The bean stores the attributes of an astronaut, [hotspot=16 file=0]`name`, [hotspot=20 file=0]`age`, 
-and [hotspot=23 file=0]`emailAddress`, and provides getters and setters to access and set 
+The bean stores the attributes of an astronaut, [hotspot=Name file=0]`name`, [hotspot=age file=0]`age`, 
+and [hotspot=emailAddress file=0]`emailAddress`, and provides getters and setters to access and set 
 the values.
 
-The [hotspot=11-50 file=0]`Astronaut` class has the following constraints applied:
+The [hotspot=Astronaut file=0]`Astronaut` class has the following constraints applied:
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
-[hotspot=15 file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
-one non-whitespace character. The annotation constrains the [hotspot=16 file=0]`name` field.
+[hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
+one non-whitespace character. The annotation constrains the [hotspot=Name file=0]`name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
-Bean Validation 2.0 is [hotspot=22 file=0]`@Email`, which can validate that the 
-[hotspot=11-50 file=0]`Astronaut` bean includes a correctly formatted email address. The 
-annotation constrains the [hotspot=23 file=0]`emailAddress` field.
+Bean Validation 2.0 is [hotspot=Email file=0]`@Email`, which can validate that the 
+[hotspot=Astronaut file=0]`Astronaut` bean includes a correctly formatted email address. The 
+annotation constrains the [hotspot=emailAddress file=0]`emailAddress` field.
 
 * The astronaut needs to be between 18 and 100 years old. Bean validation allows you to 
-specify multiple constraints on a single field. The [hotspot=18 file=0]`@Min` and 
-[hotspot=19 file=0]`@Max` built-in constraints applied to the [hotspot=20 file=0]`age` 
+specify multiple constraints on a single field. The [hotspot=Min file=0]`@Min` and 
+[hotspot=Max file=0]`@Max` built-in constraints applied to the [hotspot=age file=0]`age` 
 field check that the astronaut is between the ages of 18 and 100.
 
 In this example, the annotation is on the field value itself. You can also place the 
@@ -164,47 +164,47 @@ annotation on the getter method, which has the same effect.
 ---- 
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
-The [hotspot=17-63 file=1]`Spacecraft` bean contains 3 fields, [hotspot=22 file=1]`astronaut`, 
-[hotspot=27 file=1]`serialNumber`, and [hotspot=24 file=1]`destinations`. The JavaBean 
+The [hotspot=Spacecraft file=1]`Spacecraft` bean contains 3 fields, [hotspot=Astronaut file=1]`astronaut`, 
+[hotspot=serialNumber file=1]`serialNumber`, and [hotspot=Map file=1]`destinations`. The JavaBean 
 needs to be a CDI managed bean to allow for method-level validation, which uses CDI 
-interceptions. Because the [hotspot=17-63 file=1]`Spacecraft` bean is a CDI managed bean, 
+interceptions. Because the [hotspot=Spacecraft file=1]`Spacecraft` bean is a CDI managed bean, 
 a scope is necessary. A request scope is used in this example. To learn more about CDI, see 
 https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^].
 
 
-The [hotspot=17-63 file=1]`Spacecraft` class has the following constraints applied:
+The [hotspot=Spacecraft file=1]`Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean 
-Validation 2.0, you can specify constraints on type parameters. The [hotspot=24 file=1]`@NotBlank` 
-and [hotspot=24 file=1]`@Positive` annotations constrain the [hotspot=24 file=1]`destinations` 
+Validation 2.0, you can specify constraints on type parameters. The [hotspot=Map file=1]`@NotBlank` 
+and [hotspot=Map file=1]`@Positive` annotations constrain the [hotspot=Map file=1]`destinations` 
 map so that the destination name is not blank, and the distance is positive. The 
-[hotspot=24 file=1]`@Positive` constraint ensures that numeric value fields are greater 
+[hotspot=Map file=1]`@Positive` constraint ensures that numeric value fields are greater 
 than 0.
 
 * A correctly formatted serial number is required. In addition to specifying the 
 built-in constraints, you can create custom constraints to allow user-defined validation
-rules. The [hotspot=26 file=1]`@SerialNumber` annotation that constrains the 
-[hotspot=27 file=1]`serialNumber` field is a custom constraint, which will be created later.
+rules. The [hotspot=serial-num file=1]`@SerialNumber` annotation that constrains the 
+[hotspot=serialNumber file=1]`serialNumber` field is a custom constraint, which will be created later.
 
-Because you already specified constraints on the [hotspot=11-50 file=0]`Astronaut` bean, 
-the constraints do not need to be respecified in the [hotspot=17-63 file=1]`Spacecraft` 
-bean. Instead, because of the [hotspot=21 file=1]`@Valid` annotation on the field, all 
-the nested constraints on the [hotspot=11-50 file=0]`Astronaut` bean are validated.
+Because you already specified constraints on the [hotspot=Astronaut file=0]`Astronaut` bean, 
+the constraints do not need to be respecified in the [hotspot=Spacecraft file=1]`Spacecraft` 
+bean. Instead, because of the [hotspot=Valid file=1]`@Valid` annotation on the field, all 
+the nested constraints on the [hotspot=Astronaut file=0]`Astronaut` bean are validated.
 
 You can also use bean validation with CDI to provide method-level validation. The
-[hotspot=58-62 file=1]`launchSpacecraft` method on the [hotspot=17-63 file=1]`Spacecraft` 
-bean accepts a [hotspot=58 file=1]`launchCode` parameter, and if the [hotspot=58 file=1]`launchCode` 
-parameter is [hotspot=59 file=1]`OpenLiberty`, the method returns [hotspot=60 file=1]`true` 
-that the spacecraft is launched. Otherwise, the method returns [hotspot=61 file=1]`false`. 
-The [hotspot=58-62 file=1]`launchSpacecraft` method uses both parameter and return value 
-validation. The [hotspot=58 file=1]`@NotNull` constraint eliminates the need to manually 
+[hotspot=launchSpacecraft file=1]`launchSpacecraft` method on the [hotspot=Spacecraft file=1]`Spacecraft` 
+bean accepts a [hotspot=launchCode file=1]`launchCode` parameter, and if the [hotspot=launchCode file=1]`launchCode` 
+parameter is [hotspot=OpenLiberty file=1]`OpenLiberty`, the method returns [hotspot=true file=1]`true` 
+that the spacecraft is launched. Otherwise, the method returns [hotspot=false file=1]`false`. 
+The [hotspot=launchSpacecraft file=1]`launchSpacecraft` method uses both parameter and return value 
+validation. The [hotspot=launchCode file=1]`@NotNull` constraint eliminates the need to manually 
 check within the method that the parameter is not null. Additionally, the method has the 
-[hotspot=57 file=1]`@AssertTrue` return-level constraint to enforce that the method must 
+[hotspot=AssertTrue file=1]`@AssertTrue` return-level constraint to enforce that the method must 
 return the `true` boolean.
 
 // ==================================================================================
@@ -212,13 +212,13 @@ return the `true` boolean.
 // ==================================================================================
 == Creating custom constraints
 
-To create the custom constraint for [hotspot=26 file=0]`@SerialNumber`, begin by creating 
+To create the custom constraint for [hotspot=serial-num file=0]`@SerialNumber`, begin by creating 
 an annotation.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 [role='code_command hotspot file=1', subs='quotes']
@@ -228,27 +228,27 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.ja
 ---- 
 
 SerialNumber.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumber.java[]
 ----
 
-The [hotspot=12 file=1]`@Target` annotation indicates the element types to which you can 
-apply the custom constraint. Because the [hotspot=26 file=0]`@SerialNumber` constraint is 
-used only on a field, only the [hotspot=12 file=1]`FIELD` target is specified.
+The [hotspot=Target file=1]`@Target` annotation indicates the element types to which you can 
+apply the custom constraint. Because the [hotspot=serial-num file=0]`@SerialNumber` constraint is 
+used only on a field, only the [hotspot=Target file=1]`FIELD` target is specified.
 
-When you define a constraint annotation, the specification requires the [hotspot=13 file=1]`RUNTIME` 
+When you define a constraint annotation, the specification requires the [hotspot=Retention file=1]`RUNTIME` 
 retention policy.
 
-The [hotspot=15 file=1]`@Constraint` annotation specifies the class that contains the 
+The [hotspot=Constraint file=1]`@Constraint` annotation specifies the class that contains the 
 validation logic for the custom constraint.
 
-In the [hotspot=16-23 file=1]`SerialNumber` body, the [hotspot=18 file=1]`message()` 
+In the [hotspot=SerialNumber file=1]`SerialNumber` body, the [hotspot=message file=1]`message()` 
 method provides the message that is output when a validation constraint is violated. The 
-[hotspot=20 file=1]`groups()` and [hotspot=22 file=1]`payload()` methods associate this 
+[hotspot=groups file=1]`groups()` and [hotspot=payload file=1]`payload()` methods associate this 
 constraint only with certain groups or payloads. The defaults are used in the example.
 
-Now, create the class that provides the validation for the [hotspot=26 file=0]`@SerialNumber` 
+Now, create the class that provides the validation for the [hotspot=serial-num file=0]`@SerialNumber` 
 constraint.
 
 [role='code_command hotspot file=2', subs='quotes']
@@ -258,15 +258,15 @@ constraint.
 ---- 
 
 SerialNumberValidator.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/SerialNumberValidator.java[]
 ----
 
-The [hotspot=6-24 file=2]`SerialNumberValidator` class has one method, [hotspot=10-23 file=2]`isValid()`, 
+The [hotspot=SerialNumberValidator file=2]`SerialNumberValidator` class has one method, [hotspot=isValid file=2]`isValid()`, 
 which contains the custom validation logic. In this case, the serial number must start 
-with [hotspot=16 file=2]`Liberty` followed by 4 numbers, such as `Liberty0001`. If the 
-supplied serial number matches the constraint, [hotspot=10-23 file=2]`isValid` returns 
+with [hotspot=Liberty file=2]`Liberty` followed by 4 numbers, such as `Liberty0001`. If the 
+supplied serial number matches the constraint, [hotspot=isValid file=2]`isValid` returns 
 `true`. If the serial number does not match, it returns `false`.
 
 // ==================================================================================
@@ -275,18 +275,18 @@ supplied serial number matches the constraint, [hotspot=10-23 file=2]`isValid` r
 == Programmatically validating constraints
 
 Finally, create a service that can be used to programmatically validate the constraints
-on the [hotspot=17-63 file=0]`Spacecraft` and [hotspot=11-50 file=1]`Astronaut` JavaBeans.
+on the [hotspot=Spacecraft file=0]`Spacecraft` and [hotspot=Astronaut file=1]`Astronaut` JavaBeans.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 Astronaut.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.java[]
 ----
 
 [role='code_command hotspot file=2', subs='quotes']
@@ -296,28 +296,28 @@ include::finish/src/main/java/io/openliberty/guides/beanvalidation/Astronaut.jav
 ---- 
 
 BeanValidationEndpoint.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[tags=**;!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/BeanValidationEndpoint.java[]
 ----
 
-Two resources, a validator and an instance of the [hotspot=27 file=2]`Spacecraft` JavaBean, 
+Two resources, a validator and an instance of the [hotspot=Spacecraft file=2]`Spacecraft` JavaBean, 
 are injected into the class. The default validator is used and is obtained through CDI
 injection. However, you can also obtain the default validator with resource injection
-or a JNDI lookup. The [hotspot=17-63 file=0]`Spacecraft` JavaBean is injected so that the 
+or a JNDI lookup. The [hotspot=Spacecraft file=0]`Spacecraft` JavaBean is injected so that the 
 method-level constraints can be validated.
 
-The programmatic validation takes place in the [hotspot=34-54 file=2]`validateSpacecraft` 
-method. To validate the data, the [hotspot=42 file=2]`validate` method is called on the 
-[hotspot=17-63 file=0]`Spacecraft` bean. Because the [hotspot=17-63 file=0]`Spacecraft` 
-bean contains the [hotspot=21 file=0]`@Valid` constraint on the [hotspot=11-50 file=1]`Astronaut` 
+The programmatic validation takes place in the [hotspot=validate-Spacecraft file=2]`validateSpacecraft` 
+method. To validate the data, the [hotspot=validate file=2]`validate` method is called on the 
+[hotspot=Spacecraft file=0]`Spacecraft` bean. Because the [hotspot=Spacecraft file=0]`Spacecraft` 
+bean contains the [hotspot=Valid file=0]`@Valid` constraint on the [hotspot=Astronaut file=1]`Astronaut` 
 bean, both JavaBeans are validated. Any constraint violations found during the call to 
-the [hotspot=42 file=2]`validate` method are returned as a set of [hotspot=41 file=2]`ConstraintViolation` 
+the [hotspot=validate file=2]`validate` method are returned as a set of [hotspot=ConstraintViolation file=2]`ConstraintViolation` 
 objects.
 
-The method level validation occurs in the [hotspot=60-71 file=2]`launchSpacecraft` method. 
-A call is then made to the [hotspot=58-62 file=0]`launchSpacecraft` method on the 
-[hotspot=17-63 file=0]`Spacecraft` bean, which throws a `ConstraintViolationException` 
+The method level validation occurs in the [hotspot=launchSpacecraft file=2]`launchSpacecraft` method. 
+A call is then made to the [hotspot=launchSpacecraft file=0]`launchSpacecraft` method on the 
+[hotspot=Spacecraft file=0]`Spacecraft` bean, which throws a `ConstraintViolationException` 
 exception if either of the method-level constraints is violated.
 
 // ==================================================================================
@@ -392,49 +392,49 @@ Now, write automated tests to drive the previously created service.
 ---- 
 
 BeanValidationTest.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[tags=!copyright]
+include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationTest.java[]
 ----
 
-The [hotspot=28 file=0]`@Before` annotation causes the [hotspot=29-32 file=0]`setup` method 
-to execute before the test cases. The [hotspot=29-32 file=0]`setup` method retrieves the 
-port number for the Open Liberty server and creates a [hotspot=30 file=0]`Client` that is 
+The [hotspot=Before file=0]`@Before` annotation causes the [hotspot=setup file=0]`setup` method 
+to execute before the test cases. The [hotspot=setup file=0]`setup` method retrieves the 
+port number for the Open Liberty server and creates a [hotspot=Client file=0]`Client` that is 
 used throughout the tests, which are described as follows:
 
-* The [hotspot=40-64 file=0]`testNoFieldLevelConstraintViolations` test case verifies that 
-constraint violations do not occur when valid data is supplied to the [hotspot=41-44 file=0]`Astronaut` 
-and [hotspot=46-48 file=0]`Spacecraft` bean attributes.
+* The [hotspot=testNoFieldLevelConstraintViolations file=0]`testNoFieldLevelConstraintViolations` test case verifies that 
+constraint violations do not occur when valid data is supplied to the [hotspot=Astronaut file=0]`Astronaut` 
+and [hotspot=Spacecraft file=0]`Spacecraft` bean attributes.
 
-* The [hotspot=67-98 file=0]`testFieldLevelConstraintViolation` test case verifies that 
+* The [hotspot=testFieldLevelConstraintViolation file=0]`testFieldLevelConstraintViolation` test case verifies that 
 the appropriate constraint violations occur when data that is supplied to the 
 `Astronaut` and `Spacecraft` attributes violates 
 the defined constraints. Because 3 constraint violations are defined, 3 `ConstraintViolation` 
-objects are returned as a set from the [hotspot=83-84 file=0]`validate` call. The 3 expected 
-messages are [hotspot=87 file=0]`"must be greater than 0"` for the negative distance specified 
-in the destination map, [hotspot=91 file=0]`"must be a well-formed email address"` for the 
-incorrect email address, and the custom [hotspot=95 file=0]`"serial number is not valid"` 
+objects are returned as a set from the [hotspot=Response file=0]`validate` call. The 3 expected 
+messages are [hotspot=expectedDestinationResponse file=0]`"must be greater than 0"` for the negative distance specified 
+in the destination map, [hotspot=expectedEmailResponse file=0]`"must be a well-formed email address"` for the 
+incorrect email address, and the custom [hotspot=expectedSerialNumberResponse file=0]`"serial number is not valid"` 
 message for the serial number.
 
-* The [hotspot=101-112 file=0]`testNoMethodLevelConstraintViolations` test case verifies 
-that the method-level constraints that are specified on the [hotspot=58-62 file=1]`launchSpacecraft` 
-method of the [hotspot=17-63 file=1]`Spacecraft` bean are validated when the method is 
-called with no violations. In this test, the call to the [hotspot=103-104 file=0]`launchSpacecraft` 
-method is made with the [hotspot=102 file=0]`OpenLiberty` argument. A value of `true` is 
+* The [hotspot=testNoMethodLevelConstraintViolations file=0]`testNoMethodLevelConstraintViolations` test case verifies 
+that the method-level constraints that are specified on the [hotspot=launchSpacecraft file=1]`launchSpacecraft` 
+method of the [hotspot=Spacecraft file=1]`Spacecraft` bean are validated when the method is 
+called with no violations. In this test, the call to the [hotspot=launchSpacecraft file=0]`launchSpacecraft` 
+method is made with the [hotspot=OpenLiberty file=0]`OpenLiberty` argument. A value of `true` is 
 returned, which passes the specified constraints.
 
-* The [hotspot=115-123 file=0]`testMethodLevelConstraintViolation` test case verifies 
+* The [hotspot=testMethodLevelConstraintViolation file=0]`testMethodLevelConstraintViolation` test case verifies 
 that a `ConstraintViolationException` exception is thrown when one of the method-level 
-constraints is violated. A call with an incorrect parameter, [hotspot=116 file=0]`incorrectCode`, 
-is made to the [hotspot=58-62 file=1]`launchSpacecraft` method of the [hotspot=17-63 file=1]`Spacecraft` 
+constraints is violated. A call with an incorrect parameter, [hotspot=incorrectCode file=0]`incorrectCode`, 
+is made to the [hotspot=launchSpacecraft file=1]`launchSpacecraft` method of the [hotspot=Spacecraft file=1]`Spacecraft` 
 bean. The method returns `false`, which violates the defined constraint, and a `ConstraintViolationException` 
 exception is thrown. The exception includes the constraint violation message, which is 
-[hotspot=122 file=0]`must be true` in this example.
+[hotspot=actualResponse file=0]`must be true` in this example.
 
 Spacecraft.java
-[source, java, linenums, role='code_column']
+[source, java, linenums, role='code_column hide_tags=copyright']
 ----
-include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[tags=!copyright]
+include::finish/src/main/java/io/openliberty/guides/beanvalidation/Spacecraft.java[]
 ----
 
 [role='command']
