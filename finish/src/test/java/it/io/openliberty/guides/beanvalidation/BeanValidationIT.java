@@ -37,9 +37,9 @@ public class BeanValidationIT {
     private Client client;
     private static String port;
 
-    // tag::Before[]
+    // tag::BeforeEach[]
     @BeforeEach
-    // end::Before[]
+    // end::BeforeEach[]
     // tag::setup[]
     public void setup() {
         // tag::Client[]
