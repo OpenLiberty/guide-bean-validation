@@ -12,13 +12,12 @@
  // end::copyright[]
 package it.io.openliberty.guides.beanvalidation;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.openliberty.guides.beanvalidation.Astronaut;
 import io.openliberty.guides.beanvalidation.Spacecraft;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 
 import javax.json.bind.Jsonb;
@@ -29,27 +28,28 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-public class BeanValidationTest {
+public class BeanValidationIT {
 
     private Client client;
     private static String port;
 
     // tag::Before[]
-    @Before
+    @BeforeEach
     // end::Before[]
     // tag::setup[]
     public void setup() {
         // tag::Client[]
         client = ClientBuilder.newClient();
         // end::Client[]
-        port = System.getProperty("liberty.test.port");
+        port = System.getProperty("http.port");
     }
     // end::setup[]
 
-    @After
+    @AfterEach
     public void teardown() {
         client.close();
     }
@@ -80,8 +80,8 @@ public class BeanValidationTest {
         String actualResponse = response.readEntity(String.class);
         String expectedResponse = "No Constraint Violations";
         
-        assertEquals("Unexpected response when validating beans.", 
-                expectedResponse, actualResponse);
+        assertEquals(expectedResponse, actualResponse,
+                "Unexpected response when validating beans.");
     }
     // end::testNoFieldLevelConstraintViolations[]
 
@@ -111,18 +111,18 @@ public class BeanValidationTest {
         // tag::expectedDestinationResponse[]
         String expectedDestinationResponse = "must be greater than 0";
         // end::expectedDestinationResponse[]
-        assertTrue("Expected response to contain: " + expectedDestinationResponse,
-                actualResponse.contains(expectedDestinationResponse));
+        assertTrue(actualResponse.contains(expectedDestinationResponse),
+                "Expected response to contain: " + expectedDestinationResponse);
         // tag::expectedEmailResponse[]
         String expectedEmailResponse = "must be a well-formed email address";
         // end::expectedEmailResponse[]
-        assertTrue("Expected response to contain: " + expectedEmailResponse,
-                actualResponse.contains(expectedEmailResponse));
+        assertTrue(actualResponse.contains(expectedEmailResponse),
+                "Expected response to contain: " + expectedEmailResponse);
         // tag::expectedSerialNumberResponse[]
         String expectedSerialNumberResponse = "serial number is not valid";
         // end::expectedSerialNumberResponse[]
-        assertTrue("Expected response to contain: " + expectedSerialNumberResponse,
-                actualResponse.contains(expectedSerialNumberResponse));
+        assertTrue(actualResponse.contains(expectedSerialNumberResponse),
+                "Expected response to contain: " + expectedSerialNumberResponse);
     }
     // end::testFieldLevelConstraintViolation[]
 
@@ -140,8 +140,8 @@ public class BeanValidationTest {
         String actualResponse = response.readEntity(String.class);
         String expectedResponse = "launched";
         
-        assertEquals("Unexpected response from call to launchSpacecraft", 
-                expectedResponse, actualResponse);
+        assertEquals(expectedResponse, actualResponse,
+                "Unexpected response from call to launchSpacecraft");
        
     }
     // end::testNoMethodLevelConstraintViolations[]
@@ -156,10 +156,11 @@ public class BeanValidationTest {
                 launchCode, true);
         
         String actualResponse = response.readEntity(String.class);
-        assertTrue("Unexpected response from call to launchSpacecraft",
-        // tag::actualResponse[]
-        actualResponse.contains("must be true"));
-        // end::actualResponse[]
+        assertTrue(
+                // tag::actualResponse[]
+                actualResponse.contains("must be true"),
+                // end::actualResponse[]
+                "Unexpected response from call to launchSpacecraft");
     }
     // end::testMethodLevelConstraintViolation[]
     
