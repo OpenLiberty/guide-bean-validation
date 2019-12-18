@@ -27,6 +27,12 @@
     <dependencies>
         <!-- Provided dependencies -->
         <dependency>
+            <groupId>jakarta.platform</groupId>
+            <artifactId>jakarta.jakartaee-web-api</artifactId>
+            <version>8.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
             <version>3.0</version>
@@ -45,12 +51,6 @@
             <artifactId>cxf-rt-rs-client</artifactId>
             <version>3.2.6</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.json.bind</groupId>
-            <artifactId>javax.json.bind-api</artifactId>
-            <version>1.0</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse</groupId>
