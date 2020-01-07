@@ -16,8 +16,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 // tag::SerialNumberValidator[]
-public class SerialNumberValidator implements ConstraintValidator<SerialNumber,
-                                                                  Object> {
+public class SerialNumberValidator 
+    implements ConstraintValidator<SerialNumber,Object> {
 
     @Override
     // tag::isValid[]
