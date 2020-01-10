@@ -48,8 +48,8 @@ public class BeanValidationEndpoint {
     // tag::validate-Spacecraft[]
     public String validateSpacecraft(
         @RequestBody(description = "Specify the values to create the "
-           		+ "Astronaut and Spacecraft beans.", 
-           	content = @Content(mediaType = "application/json", 
+                + "Astronaut and Spacecraft beans.",
+            content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Spacecraft.class)))
         Spacecraft spacecraft) {
 	    
