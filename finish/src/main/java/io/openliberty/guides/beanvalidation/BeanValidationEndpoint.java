@@ -47,29 +47,30 @@ public class BeanValidationEndpoint {
     @Operation(summary = "POST request to validate your spacecraft bean")
     // tag::validate-Spacecraft[]
     public String validateSpacecraft(
-                @RequestBody(description = "Specify the values to create the "
-           		+ "Astronaut and Spacecraft beans.", 
-           	    content = @Content(mediaType = "application/json", 
+        @RequestBody(description = "Specify the values to create the "
+                + "Astronaut and Spacecraft beans.",
+            content = @Content(mediaType = "application/json",
                 schema = @Schema(implementation = Spacecraft.class)))
-                Spacecraft spacecraft) {
+        Spacecraft spacecraft) {
 	    
-        // tag::ConstraintViolation[]
-        Set<ConstraintViolation<Spacecraft>> violations
-        // end::ConstraintViolation[]
-        // tag::validate[]
-            = validator.validate(spacecraft);
-        // end::validate[]
+            // tag::ConstraintViolation[]
+            Set<ConstraintViolation<Spacecraft>> violations
+            // end::ConstraintViolation[]
+            // tag::validate[]
+                = validator.validate(spacecraft);
+            // end::validate[]
 
-        if (violations.size() == 0) {
-            return "No Constraint Violations";
-        }
-				
-        StringBuilder sb = new StringBuilder();
-        for (ConstraintViolation<Spacecraft> violation : violations) {
-            sb.append("Constraint Violation Found: ").append(violation.getMessage())
-            .append(System.lineSeparator());
-        }
-        return sb.toString();
+            if (violations.size() == 0) {
+                return "No Constraint Violations";
+            }
+                    
+            StringBuilder sb = new StringBuilder();
+            for (ConstraintViolation<Spacecraft> violation : violations) {
+                sb.append("Constraint Violation Found: ")
+                .append(violation.getMessage())
+                .append(System.lineSeparator());
+            }
+            return sb.toString();
     }
     // end::validate-Spacecraft[]
     
@@ -79,16 +80,16 @@ public class BeanValidationEndpoint {
     @Operation(summary = "POST request to specify a launch code")
     // tag::launchSpacecraft[]
     public String launchSpacecraft(
-             @RequestBody(description = "Enter the launch code.  Must not be "
-            		+ "null and must equal OpenLiberty for successful launch.",
-             content = @Content(mediaType = "text/plain"))
-             String launchCode) {	
-        try {
-            bean.launchSpacecraft(launchCode);
-            return "launched";
-        } catch(ConstraintViolationException ex) {
-            return ex.getMessage();
-        }
+        @RequestBody(description = "Enter the launch code.  Must not be "
+                + "null and must equal OpenLiberty for successful launch.",
+            content = @Content(mediaType = "text/plain"))
+        String launchCode) {	
+            try {
+                bean.launchSpacecraft(launchCode);
+                return "launched";
+            } catch(ConstraintViolationException ex) {
+                return ex.getMessage();
+            }
     }
     // end::launchSpacecraft[]
 }

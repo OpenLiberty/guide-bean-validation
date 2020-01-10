@@ -72,5 +72,5 @@ public class Astronaut implements Serializable {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
-  }
+}
 // end::Astronaut[]
