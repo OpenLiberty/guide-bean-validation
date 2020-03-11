@@ -14,8 +14,8 @@
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
-:page-seo-title: Bean Validation tutorial
-:page-seo-description: How to validate JavaBeans in microservices using Java EE 8 Bean Validation
+:page-seo-title: Validating constraints for JavaBeans in Java microservices
+:page-seo-description: A getting started tutorial with examples on how to validate JavaBeans in a Java EE or Jakarta EE application using the Java Bean Validation specification.
 :guide-author: Open Liberty
 = Validating constraints with microservices
 
