@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2019 IBM Corporation and others.
+// Copyright (c) 2018, 2020 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //  https://creativecommons.org/licenses/by-nd/4.0/
@@ -149,7 +149,7 @@ The [hotspot=Astronaut file=0]`Astronaut` class has the following constraints ap
 
 * The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
 [hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
-one non-whitespace character. The annotation constrains the [hotspot=Name file=0]`name` field.
+one character that isn't a blank space. The annotation constrains the [hotspot=Name file=0]`name` field.
 
 * The email supplied needs to be a valid email address. Another built-in constraint in 
 Bean Validation 2.0 is [hotspot=Email file=0]`@Email`, which can validate that the 
