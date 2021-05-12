@@ -126,7 +126,7 @@ include::{common-includes}/twyb-end.adoc[]
 Navigate to the `start` directory to begin.
 
 [role='command']
-include::{common-includes}/devmode-start.adoc[]
+include::{common-includes}/devmode-lmp33-start.adoc[]
 
 First, create the JavaBeans to be constrained. 
 [role="code_command hotspot file=0", subs="quotes"] 
