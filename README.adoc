@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2020 IBM Corporation and others.
+// Copyright (c) 2018, 2021 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //  https://creativecommons.org/licenses/by-nd/4.0/
@@ -10,7 +10,7 @@
 :page-duration: 20 minutes
 :page-releasedate: 2018-08-24
 :page-description: Explore the use of bean validation to validate user input data for microservices.
-:page-tags: ['Java EE', 'Jakarta EE']
+:page-tags: ['Jakarta EE']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
