@@ -349,8 +349,21 @@ exception if either of the method-level constraints is violated.
 [role='command']
 include::{common-includes}/devmode-build.adoc[]
 
-Navigate to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL. Expand the
-`/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
+// Static guide instruction
+ifndef::cloud-hosted[]
+Navigate to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
+endif::[]
+
+// Cloud hosted guide instruction
+ifdef::cloud-hosted[]
+Visit the OpenAPI UI by selecting **Launch Application** from the menu of the IDE.
+Enter **9080** to specify the port number and click the **OK** button. 
+You’re redirected to a URL similar to **`https://accountname-9080.theiadocker-4.proxy.cognitiveclass.ai`**, 
+where **accountname** is your account name. 
+Click the **interactive UI** link on the welcome page.
+endif::[]
+
+Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click `Try it out`. Copy the following example input into the text box:
 
 [role='command']
