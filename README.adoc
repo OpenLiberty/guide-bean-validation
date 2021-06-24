@@ -13,7 +13,7 @@
 :page-tags: ['Jakarta EE']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
-:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/master
+:common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
 :page-seo-title: Validating constraints for JavaBeans in Java microservices
 :page-seo-description: A getting started tutorial with examples on how to validate JavaBeans in a Java EE or Jakarta EE application using the Java Bean Validation specification.
 :guide-author: Open Liberty
