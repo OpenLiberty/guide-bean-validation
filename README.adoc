@@ -77,11 +77,11 @@ endif::[]
 
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-To visit the UI, select **Launch Application** from the menu of the IDE, 
-type in **9080** to specify the port number and click the **OK** button. 
-You’re redirected to a URL similar to **`https://accountname-9080.theiadocker-4.proxy.cognitiveclass.ai`**, 
-where **accountname** is your account name. 
-Click the **interactive UI** link on the welcome page.
+Once your application is up and running, use the following command to get the URL.
+Open your browser and check out your service by going to the URL that the command returns.
+```
+echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/openapi/ui
+```
 endif::[]
 
 You see the OpenAPI user interface documenting the REST endpoints used in this guide.
