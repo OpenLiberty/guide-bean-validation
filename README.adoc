@@ -93,7 +93,7 @@ Expand the `/beanvalidation/validatespacecraft POST request to validate your
 spacecraft bean` section and click *Try it out*.
 Copy the following example input into the text box:
 
-[role=command]
+[role='command']
 ```
 {
   "astronaut": {
@@ -112,7 +112,7 @@ Click `Execute` and you receive the response `No Constraint Violations` because 
 values specified pass the constraints you will create in this guide. Now try copying
 the following value into the box:
 
-[role=command]
+[role='command']
 ```
 {
   "astronaut": {
@@ -368,7 +368,7 @@ endif::[]
 Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click `Try it out`. Copy the following example input into the text box:
 
-[role=command]
+[role='command']
 ```
 {
   "astronaut": {
