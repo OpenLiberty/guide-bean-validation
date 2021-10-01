@@ -93,8 +93,8 @@ Expand the `/beanvalidation/validatespacecraft POST request to validate your
 spacecraft bean` section and click *Try it out*.
 Copy the following example input into the text box:
 
-[source, role='command']
-----
+[role='command']
+```
 {
   "astronaut": {
     "name": "Libby",
@@ -106,14 +106,14 @@ Copy the following example input into the text box:
   },
   "serialNumber": "Liberty0001"
 }
-----
+```
 
 Click `Execute` and you receive the response `No Constraint Violations` because the 
 values specified pass the constraints you will create in this guide. Now try copying
 the following value into the box:
 
-[source, role='command']
-----
+[role='command']
+```
 {
   "astronaut": {
     "name": "Libby",
@@ -125,7 +125,7 @@ the following value into the box:
   },
   "serialNumber": "Liberty0001"
 }
-----
+```
 
 This time you receive `Constraint Violation Found: must be greater than or equal
 to 18` as a response because the age specified was under the minimum age of 18. Try 
@@ -369,7 +369,7 @@ Expand the `/beanvalidation/validatespacecraft POST request to validate your spa
 section and click `Try it out`. Copy the following example input into the text box:
 
 [role='command']
-----
+```
 {
   "astronaut": {
     "name": "Libby",
@@ -381,7 +381,7 @@ section and click `Try it out`. Copy the following example input into the text b
   },
   "serialNumber": "Liberty0001"
 }
-----
+```
 
 Click `Execute` and you receive the response `No Constraint Violations` because
 the values specified pass previously defined constraints.
