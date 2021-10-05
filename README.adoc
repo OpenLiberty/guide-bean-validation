@@ -164,19 +164,11 @@ the values.
 
 The [hotspot=Astronaut file=0]`Astronaut` class has the following constraints applied:
 
-* The astronaut needs to have a name. Bean Validation 2.0 provides a built-in 
-[hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains 
-one character that isn't a blank space. The annotation constrains the [hotspot=Name file=0]`name` field.
+* The astronaut needs to have a name. Bean Validation 2.0 provides a built-in [hotspot=not-blank file=0]`@NotBlank` constraint, which ensures the value is not null and contains one character that isn't a blank space. The annotation constrains the [hotspot=Name file=0]`name` field.
 
-* The email supplied needs to be a valid email address. Another built-in constraint in 
-Bean Validation 2.0 is [hotspot=Email file=0]`@Email`, which can validate that the 
-[hotspot=Astronaut file=0]`Astronaut` bean includes a correctly formatted email address. The 
-annotation constrains the [hotspot=emailAddress file=0]`emailAddress` field.
+* The email supplied needs to be a valid email address. Another built-in constraint in Bean Validation 2.0 is [hotspot=Email file=0]`@Email`, which can validate that the [hotspot=Astronaut file=0]`Astronaut` bean includes a correctly formatted email address. The annotation constrains the [hotspot=emailAddress file=0]`emailAddress` field.
 
-* The astronaut needs to be between 18 and 100 years old. Bean validation allows you to 
-specify multiple constraints on a single field. The [hotspot=Min file=0]`@Min` and 
-[hotspot=Max file=0]`@Max` built-in constraints applied to the [hotspot=age file=0]`age` 
-field check that the astronaut is between the ages of 18 and 100.
+* The astronaut needs to be between 18 and 100 years old. Bean validation allows you to specify multiple constraints on a single field. The [hotspot=Min file=0]`@Min` and [hotspot=Max file=0]`@Max` built-in constraints applied to the [hotspot=age file=0]`age` field check that the astronaut is between the ages of 18 and 100.
 
 In this example, the annotation is on the field value itself. You can also place the 
 annotation on the getter method, which has the same effect.
