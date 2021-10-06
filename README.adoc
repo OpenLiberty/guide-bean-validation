@@ -455,7 +455,6 @@ include::{common-includes}/devmode-quit.adoc[]
 
 == Great work! You're done!
 
-You developed and tested a Java microservice by using bean validation and Open 
-Liberty.
+You developed and tested a Java microservice by using bean validation and Open Liberty.
 
 include::{common-includes}/attribution.adoc[subs="attributes"]
