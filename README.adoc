@@ -22,7 +22,7 @@
 [.hidden]
 NOTE: This repository contains the guide documentation source. To view the guide in published form, view it on the https://openliberty.io/guides/{projectid}.html[Open Liberty website].
 
-Explore the use of bean validation to validate user input data for microservices.
+Explore how to use bean validation to validate user input data for microservices.
 
 // ==================================================================================
 // What you'll learn
@@ -68,12 +68,10 @@ include::{common-includes}/gitclone.adoc[]
 [role='command']
 include::{common-includes}/twyb-intro.adoc[]
 
-
 // Static guide instruction
 ifndef::cloud-hosted[]
-Point your browser to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
+Go to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
 endif::[]
-
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
 Once your application is up and running, open another command-line session by selecting **Terminal** > **New Terminal** 
@@ -84,7 +82,6 @@ echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/o
 ```
 {: codeblock} 
 endif::[]
-
 You see the OpenAPI user interface documenting the REST endpoints used in this guide.
 If you are interested in learning more about OpenAPI,
 read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs^]. 
@@ -190,12 +187,11 @@ interceptions. Because the [hotspot=Spacecraft file=1]`Spacecraft` bean is a CDI
 a scope is necessary. A request scope is used in this example. To learn more about CDI, see 
 https://openliberty.io/guides/cdi-intro.html[Injecting dependencies into microservices^].
 
-
 The [hotspot=Spacecraft file=1]`Spacecraft` class has the following constraints applied:
 
 * Every destination that is specified needs a name and a positive distance. In Bean Validation 2.0, you can specify constraints on type parameters. The [hotspot=Map file=1]`@NotBlank` and [hotspot=Map file=1]`@Positive` annotations constrain the [hotspot=Map file=1]`destinations` map so that the destination name is not blank, and the distance is positive. The [hotspot=Map file=1]`@Positive` constraint ensures that numeric value fields are greater than 0.
 
-* A correctly formatted serial number is required. In addition to specifying the built-in constraints, you can create custom constraints to allow user-defined validation rules. The [hotspot=serial-num file=1]`@SerialNumber` annotation that constrains the [hotspot=serialNumber file=1]`serialNumber` field is a custom constraint, which will be created later.
+* A correctly formatted serial number is required. In addition to specifying the built-in constraints, you can create custom constraints to allow user-defined validation rules. The [hotspot=serial-num file=1]`@SerialNumber` annotation that constrains the [hotspot=serialNumber file=1]`serialNumber` field is a custom constraint, which you will create later.
 
 Because you already specified constraints on the [hotspot=Astronaut file=0]`Astronaut` bean, 
 the constraints do not need to be respecified in the [hotspot=Spacecraft file=1]`Spacecraft` 
@@ -389,8 +385,8 @@ Constraint Violation Found: must be greater than or equal to 18
 Constraint Violation Found: must be a well-formed email address
 ----
 
-To try the method-level validation expand the `/beanvalidation/launchspacecraft POST request to specify a launch code` section.
-Enter `OpenLiberty` in the text box to note that `launched` is returned because the launch code passes the defined
+To try the method-level validation, expand the `/beanvalidation/launchspacecraft POST request to specify a launch code` section.
+Enter `OpenLiberty` in the text box. Note that `launched` is returned because the launch code passes the defined
 constraints. Replace `OpenLiberty` with anything else to note that a constraint
 violation is returned.
 
@@ -425,7 +421,7 @@ used throughout the tests, which are described as follows:
 
 * The [hotspot=testNoMethodLevelConstraintViolations file=0]`testNoMethodLevelConstraintViolations()` test case verifies that the method-level constraints that are specified on the [hotspot=launchSpacecraft file=1]`launchSpacecraft()` method of the [hotspot=Spacecraft file=1]`Spacecraft` bean are validated when the method is called with no violations. In this test, the call to the [hotspot=launchSpacecraft file=0]`launchSpacecraft()` method is made with the [hotspot=OpenLiberty file=0]`OpenLiberty` argument. A value of `true` is returned, which passes the specified constraints.
 
-* The [hotspot=testMethodLevelConstraintViolation file=0]`testMethodLevelConstraintViolation()` test case verifies that a `ConstraintViolationException` exception is thrown when one of the method-level constraints is violated. A call with an incorrect parameter, [hotspot=incorrectCode file=0]`incorrectCode`, is made to the [hotspot=launchSpacecraft file=1]`launchSpacecraft()` method of the [hotspot=Spacecraft file=1]`Spacecraft` bean. The method returns `false`, which violates the defined constraint, and a `ConstraintViolationException` exception is thrown. The exception includes the constraint violation message, which is [hotspot=actualResponse file=0]`must be true` in this example.
+* The [hotspot=testMethodLevelConstraintViolation file=0]`testMethodLevelConstraintViolation()` test case verifies that a `ConstraintViolationException` exception is thrown when one of the method-level constraints is violated. A call with an incorrect parameter, [hotspot=incorrectCode file=0]`incorrectCode`, is made to the [hotspot=launchSpacecraft file=1]`launchSpacecraft()` method of the [hotspot=Spacecraft file=1]`Spacecraft` bean. The method returns `false`, which violates the defined constraint, and a `ConstraintViolationException` exception is thrown. The exception includes the constraint violation message, which in this example is [hotspot=actualResponse file=0]`must be true`.
 
 Spacecraft.java
 [source, java, linenums, role='code_column hide_tags=copyright']
