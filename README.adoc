@@ -333,7 +333,6 @@ include::{common-includes}/devmode-build.adoc[]
 ifndef::cloud-hosted[]
 Go to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
 endif::[]
-
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
 Use the following command to get the URL.
@@ -343,7 +342,6 @@ echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/o
 ```
 {: codeblock} 
 endif::[]
-
 Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean`
 section and click `Try it out`. Copy the following example input into the text box:
 
