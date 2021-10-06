@@ -331,7 +331,7 @@ include::{common-includes}/devmode-build.adoc[]
 
 // Static guide instruction
 ifndef::cloud-hosted[]
-Navigate to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
+Go to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] URL.
 endif::[]
 
 // Cloud hosted guide instruction
