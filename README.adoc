@@ -323,17 +323,17 @@ A call is then made to the [hotspot=launchSpacecraft file=0]`launchSpacecraft()`
 [hotspot=Spacecraft file=0]`Spacecraft` bean, which throws a `ConstraintViolationException` 
 exception if either of the method-level constraints is violated.
 
-== Configuring the Bean Validation Feature
+== Enabling the Bean Validation feature
 
-Enable the bean validation feature in the application by updating the `server.xml` configuration file.
+Enable the Bean Validation feature in the application by updating the `server.xml` configuration file.
 
 [role="code_command", subs="quotes"]
 ----
-#Replace the `server.xml` file.#
+#Replace the `server` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 
-The [hotspot=beanValidation file=0]`beanValidation-2.0` feature definition enables the bean validation feature in the
+The `beanValidation` feature definition enables the bean validation feature in the
 application so that you can use it to validate that the supplied JavaBeans meet the defined constraints.
 
 server.xml
