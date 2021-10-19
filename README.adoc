@@ -137,6 +137,13 @@ include::{common-includes}/twyb-end.adoc[]
 == Applying constraints on the JavaBeans
 
 Navigate to the `start` directory to begin.
+// cloud hosted instructions
+ifdef::cloud-hosted[]
+```
+cd /home/project/guide-bean-validation/start
+```
+{: codeblock}
+endif::[]
 
 [role='command']
 include::{common-includes}/devmode-lmp33-start.adoc[]
