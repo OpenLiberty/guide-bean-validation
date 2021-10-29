@@ -340,7 +340,7 @@ Finally, add the Bean Validation feature in the application by updating the `ser
 `src/main/liberty/config/server.xml`
 ----
 
-The `beanValidation` feature definition enables the bean validation feature in the
+The [hotspot=beanValidation file=2]`beanValidation-2.0` feature definition enables the bean validation feature in the
 application so that you can use it to validate that the supplied JavaBeans meet the defined constraints.
 
 server.xml
