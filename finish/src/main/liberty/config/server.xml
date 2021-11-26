@@ -1,7 +1,9 @@
 <server description="Liberty Server for Bean Validation Guide">
 
     <featureManager>
+        <!-- tag::beanValidation[] -->
         <feature>beanValidation-2.0</feature>
+        <!-- end::beanValidation[] -->
         <feature>cdi-2.0</feature>
         <feature>jaxrs-2.1</feature>
         <feature>mpOpenAPI-2.0</feature>
