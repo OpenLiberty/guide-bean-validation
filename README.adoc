@@ -284,7 +284,7 @@ supplied serial number matches the constraint, [hotspot=isValid file=2]`isValid(
 // ==================================================================================
 == Programmatically validating constraints
 
-Finally, create a service that can be used to programmatically validate the constraints
+Next, create a service to programmatically validate the constraints
 on the [hotspot=Spacecraft file=0]`Spacecraft` and [hotspot=Astronaut file=1]`Astronaut` JavaBeans.
 
 Spacecraft.java
@@ -329,6 +329,25 @@ The method level validation occurs in the [hotspot=launchSpacecraft file=2]`laun
 A call is then made to the [hotspot=launchSpacecraft file=0]`launchSpacecraft()` method on the 
 [hotspot=Spacecraft file=0]`Spacecraft` bean, which throws a `ConstraintViolationException` 
 exception if either of the method-level constraints is violated.
+
+== Enabling the Bean Validation feature
+
+Finally, add the Bean Validation feature in the application by updating the `server.xml` configuration file.
+
+[role="code_command", subs="quotes"]
+----
+#Replace the `server` configuration file.#
+`src/main/liberty/config/server.xml`
+----
+
+You can now use the [hotspot=beanValidation file=0]`beanValidation-2.0` feature to validate that the 
+supplied JavaBeans meet the defined constraints.
+
+server.xml
+[source, xml, linenums, role='code_column hide_tags=copyright']
+----
+include::finish/src/main/liberty/config/server.xml[]
+----
 
 // ==================================================================================
 // Running the application
