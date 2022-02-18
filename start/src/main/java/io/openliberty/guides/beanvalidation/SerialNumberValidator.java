@@ -1,9 +1,9 @@
 package io.openliberty.guides.beanvalidation;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
-public class SerialNumberValidator 
+public class SerialNumberValidator
     implements ConstraintValidator<SerialNumber,Object> {
 
     @Override

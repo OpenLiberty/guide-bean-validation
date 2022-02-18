@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018, 2019 IBM Corporation and others.
+ * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,22 +13,22 @@
 package io.openliberty.guides.beanvalidation;
 
 import java.io.Serializable;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
 
 // tag::Astronaut[]
 public class Astronaut implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     // tag::not-blank[]
     @NotBlank
     // end::not-blank[]
     // tag::Name[]
     private String name;
-    // end::Name[] 
+    // end::Name[]
 
     // tag::Min[]
     @Min(18)
