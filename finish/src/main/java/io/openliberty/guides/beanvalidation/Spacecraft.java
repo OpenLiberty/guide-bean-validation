@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
 // end::copyright[]
 package io.openliberty.guides.beanvalidation;
@@ -57,7 +57,7 @@ public class Spacecraft implements Serializable {
         this.astronaut = astronaut;
     }
 
-    public void setDestinations(Map<String,Integer> destinations) {
+    public void setDestinations(Map<String, Integer> destinations) {
         this.destinations = destinations;
     }
 
@@ -85,11 +85,12 @@ public class Spacecraft implements Serializable {
     public boolean launchSpacecraft(@NotNull String launchCode) {
     // end::launchCode[]
         // tag::OpenLiberty[]
-        if(launchCode.equals("OpenLiberty"))
-        // end::OpenLiberty[]
+        if (launchCode.equals("OpenLiberty")) {
+            // end::OpenLiberty[]
             // tag::true[]
             return true;
             // end::true[]
+        }
         // tag::false[]
         return false;
         // end::false[]

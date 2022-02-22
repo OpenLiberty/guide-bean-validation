@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     IBM Corporation - initial API and implementation
+ *     IBM Corporation - Initial implementation
  *******************************************************************************/
 // end::copyright[]
 package io.openliberty.guides.beanvalidation;
@@ -17,15 +17,16 @@ import jakarta.validation.ConstraintValidatorContext;
 
 // tag::SerialNumberValidator[]
 public class SerialNumberValidator
-    implements ConstraintValidator<SerialNumber,Object> {
+    implements ConstraintValidator<SerialNumber, Object> {
 
     @Override
     // tag::isValid[]
     public boolean isValid(Object arg0, ConstraintValidatorContext arg1) {
         //Serial Numbers must start with Liberty followed by four numbers
         boolean isValid = false;
-        if (arg0 == null)
+        if (arg0 == null) {
             return isValid;
+        }
         String serialNumber = arg0.toString();
         // tag::Liberty[]
         isValid = serialNumber.length() == 11 && serialNumber.startsWith("Liberty");

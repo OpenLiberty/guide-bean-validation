@@ -166,15 +166,17 @@ public class BeanValidationIT {
 
     private Response postResponse(String url, String value,
                                   boolean isMethodLevel) {
-        if(isMethodLevel)
-            return client.target(url).request().post(Entity.text(value));
-        else
-            return client.target(url).request().post(Entity.entity(value,
+        if (isMethodLevel) {
+                return client.target(url).request().post(Entity.text(value));
+        }
+        else {
+                return client.target(url).request().post(Entity.entity(value,
                 MediaType.APPLICATION_JSON));
+        }
     }
 
     private String getURL(String port, String function) {
-        return "http://localhost:" + port + "/Spacecraft/beanvalidation/" +
-                function;
+        return "http://localhost:" + port + "/Spacecraft/beanvalidation/"
+                + function;
     }
 }
