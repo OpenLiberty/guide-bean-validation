@@ -168,8 +168,7 @@ public class BeanValidationIT {
                                   boolean isMethodLevel) {
         if (isMethodLevel) {
                 return client.target(url).request().post(Entity.text(value));
-        }
-        else {
+        } else {
                 return client.target(url).request().post(Entity.entity(value,
                 MediaType.APPLICATION_JSON));
         }
