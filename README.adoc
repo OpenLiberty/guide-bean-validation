@@ -57,11 +57,8 @@ Go to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] UR
 endif::[]
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-Once your application is up and running, open another command-line session by selecting **Terminal** > **New Terminal** from the menu of the IDE. Then use the following command to get the URL. Open your browser and check out your service by going to the URL that the command returns.
-```bash
-echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/openapi/ui
-```
-
+Once your application is up and running, click the following button to check out your service by visiting the ***/openapi/ui*** endpoint.
+::startApplication{port="9080" display="external" name="Visit OpenAPI UI" route="/openapi/ui"}
 endif::[]
 You see the OpenAPI user interface documenting the REST endpoints used in this guide. If you are interested in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs^]. Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean` section and click `Try it out`. Copy the following example input into the text box:
 
@@ -284,11 +281,8 @@ Go to the http://localhost:9080/openapi/ui[http://localhost:9080/openapi/ui^] UR
 endif::[]
 // Cloud hosted guide instruction
 ifdef::cloud-hosted[]
-Use the following command to get the URL. Open your browser and check out your service by going to the URL that the command returns.
-```bash
-echo http://${USERNAME}-9080.$(echo $TOOL_DOMAIN | sed 's/\.labs\./.proxy./g')/openapi/ui
-```
-
+Click the following button to check out your service by visiting the ***/openapi/ui*** endpoint:
+::startApplication{port="9080" display="external" name="Visit OpenAPI UI" route="/openapi/ui"}
 endif::[]
 Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean` section and click `Try it out`. Copy the following example input into the text box:
 
