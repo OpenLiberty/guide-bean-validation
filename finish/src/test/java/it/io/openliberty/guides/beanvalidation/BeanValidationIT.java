@@ -1,6 +1,6 @@
 // tag::copyright[]
 /*******************************************************************************
- * Copyright (c) 2018, 2019 IBM Corporation and others.
+ * Copyright (c) 2018, 2022 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,7 +9,7 @@
  * Contributors:
  *     IBM Corporation - Initial implementation
  *******************************************************************************/
- // end::copyright[]
+// end::copyright[]
 package it.io.openliberty.guides.beanvalidation;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,13 +20,13 @@ import io.openliberty.guides.beanvalidation.Spacecraft;
 
 import java.util.HashMap;
 
-import javax.json.bind.Jsonb;
-import javax.json.bind.JsonbBuilder;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Entity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -72,14 +72,14 @@ public class BeanValidationIT {
         destinations.put("Mars", 1500);
         destinations.put("Pluto", 10000);
         spacecraft.setDestinations(destinations);
-        
+
         Jsonb jsonb = JsonbBuilder.create();
         String spacecraftJSON = jsonb.toJson(spacecraft);
-        Response response = postResponse(getURL(port, "validatespacecraft"), 
+        Response response = postResponse(getURL(port, "validatespacecraft"),
                 spacecraftJSON, false);
         String actualResponse = response.readEntity(String.class);
         String expectedResponse = "No Constraint Violations";
-        
+
         assertEquals(expectedResponse, actualResponse,
                 "Unexpected response when validating beans.");
     }
@@ -92,19 +92,19 @@ public class BeanValidationIT {
         astronaut.setAge(25);
         astronaut.setEmailAddress("libby");
         astronaut.setName("Libby");
-        
+
         Spacecraft spacecraft = new Spacecraft();
         spacecraft.setAstronaut(astronaut);
         spacecraft.setSerialNumber("Liberty123");
-        
+
         HashMap<String, Integer> destinations = new HashMap<String, Integer>();
         destinations.put("Mars", -100);
         spacecraft.setDestinations(destinations);
-        
+
         Jsonb jsonb = JsonbBuilder.create();
         String spacecraftJSON = jsonb.toJson(spacecraft);
         // tag::Response[]
-        Response response = postResponse(getURL(port, "validatespacecraft"), 
+        Response response = postResponse(getURL(port, "validatespacecraft"),
                 spacecraftJSON, false);
         // end::Response[]
         String actualResponse = response.readEntity(String.class);
@@ -133,16 +133,16 @@ public class BeanValidationIT {
         String launchCode = "OpenLiberty";
         // end::OpenLiberty[]
         // tag::launchSpacecraft[]
-        Response response = postResponse(getURL(port, "launchspacecraft"), 
+        Response response = postResponse(getURL(port, "launchspacecraft"),
                 launchCode, true);
         // end::launchSpacecraft[]
-        
+
         String actualResponse = response.readEntity(String.class);
         String expectedResponse = "launched";
-        
+
         assertEquals(expectedResponse, actualResponse,
                 "Unexpected response from call to launchSpacecraft");
-       
+
     }
     // end::testNoMethodLevelConstraintViolations[]
 
@@ -152,9 +152,9 @@ public class BeanValidationIT {
         // tag::incorrectCode[]
         String launchCode = "incorrectCode";
         // end::incorrectCode[]
-        Response response = postResponse(getURL(port, "launchspacecraft"), 
+        Response response = postResponse(getURL(port, "launchspacecraft"),
                 launchCode, true);
-        
+
         String actualResponse = response.readEntity(String.class);
         assertTrue(
                 // tag::actualResponse[]
@@ -163,18 +163,19 @@ public class BeanValidationIT {
                 "Unexpected response from call to launchSpacecraft");
     }
     // end::testMethodLevelConstraintViolation[]
-    
-    private Response postResponse(String url, String value, 
+
+    private Response postResponse(String url, String value,
                                   boolean isMethodLevel) {
-        if(isMethodLevel)
-            return client.target(url).request().post(Entity.text(value));
-        else
-            return client.target(url).request().post(Entity.entity(value, 
+        if (isMethodLevel) {
+                return client.target(url).request().post(Entity.text(value));
+        } else {
+                return client.target(url).request().post(Entity.entity(value,
                 MediaType.APPLICATION_JSON));
+        }
     }
 
     private String getURL(String port, String function) {
-        return "http://localhost:" + port + "/Spacecraft/beanvalidation/" + 
-                function;
+        return "http://localhost:" + port + "/Spacecraft/beanvalidation/"
+                + function;
     }
 }
