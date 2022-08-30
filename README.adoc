@@ -266,7 +266,7 @@ server.xml
 include::finish/src/main/liberty/config/server.xml[]
 ----
 
-You can now use the [hotspot=beanValidation file=0]`beanValidation-2.0` feature to validate that the supplied JavaBeans meet the defined constraints.
+You can now use the [hotspot=beanValidation file=0]`beanValidation` feature to validate that the supplied JavaBeans meet the defined constraints.
 
 // ==================================================================================
 // Running the application
