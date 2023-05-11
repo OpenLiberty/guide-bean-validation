@@ -4,10 +4,10 @@
         <!-- tag::beanValidation[] -->
         <feature>beanValidation-3.0</feature>
         <!-- end::beanValidation[] -->
-        <feature>cdi-3.0</feature>
-        <feature>restfulWS-3.0</feature>
-        <feature>jsonb-2.0</feature>
-        <feature>mpOpenAPI-3.0</feature>
+        <feature>cdi-4.0</feature>
+        <feature>restfulWS-3.1</feature>
+        <feature>jsonb-3.0</feature>
+        <feature>mpOpenAPI-3.1</feature>
     </featureManager>
 
     <variable name="default.http.port" defaultValue="9080"/>
