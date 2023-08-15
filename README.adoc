@@ -256,7 +256,7 @@ Finally, add the Bean Validation feature in the application by updating the Libe
 
 [role="code_command", subs="quotes"]
 ----
-#Replace the `server` configuration file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 
