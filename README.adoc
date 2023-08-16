@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2022 IBM Corporation and others.
+// Copyright (c) 2018, 2023 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //  https://creativecommons.org/licenses/by-nd/4.0/
@@ -252,11 +252,11 @@ The method level validation occurs in the [hotspot=launchSpacecraft file=2]`laun
 
 == Enabling the Bean Validation feature
 
-Finally, add the Bean Validation feature in the application by updating the `server.xml` configuration file.
+Finally, add the Bean Validation feature in the application by updating the Liberty `server.xml` configuration file.
 
 [role="code_command", subs="quotes"]
 ----
-#Replace the `server` configuration file.#
+#Replace the Liberty `server.xml` configuration file.#
 `src/main/liberty/config/server.xml`
 ----
 
@@ -343,7 +343,7 @@ BeanValidationIT.java
 include::finish/src/test/java/it/io/openliberty/guides/beanvalidation/BeanValidationIT.java[]
 ----
 
-The [hotspot=BeforeEach file=0]`@BeforeEach` annotation causes the [hotspot=setup file=0]`setup()` method to execute before the test cases. The [hotspot=setup file=0]`setup()` method retrieves the port number for the Open Liberty server and creates a [hotspot=Client file=0]`Client` that is used throughout the tests, which are described as follows:
+The [hotspot=BeforeEach file=0]`@BeforeEach` annotation causes the [hotspot=setup file=0]`setup()` method to execute before the test cases. The [hotspot=setup file=0]`setup()` method retrieves the port number for the Open Liberty and creates a [hotspot=Client file=0]`Client` that is used throughout the tests, which are described as follows:
 
 * The [hotspot=testNoFieldLevelConstraintViolations file=0]`testNoFieldLevelConstraintViolations()` test case verifies that constraint violations do not occur when valid data is supplied to the [hotspot=Astronaut file=0]`Astronaut` and [hotspot=Spacecraft file=0]`Spacecraft` bean attributes.
 
