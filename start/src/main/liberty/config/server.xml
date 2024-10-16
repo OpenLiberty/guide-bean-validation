@@ -1,10 +1,12 @@
 <server description="Liberty Server for Bean Validation Guide">
 
     <featureManager>
-        <feature>cdi-4.0</feature>
-        <feature>restfulWS-3.1</feature>
-        <feature>jsonb-3.0</feature>
-        <feature>mpOpenAPI-3.1</feature>
+        <platform>jakartaee-10.0</platform>
+        <platform>microprofile-6.1</platform>
+        <feature>cdi</feature>
+        <feature>restfulWS</feature>
+        <feature>jsonb</feature>
+        <feature>mpOpenAPI</feature>
     </featureManager>
 
     <variable name="http.port" defaultValue="9080"/>
