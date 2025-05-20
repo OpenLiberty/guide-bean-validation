@@ -286,7 +286,7 @@ Click the following button to check out your service by visiting the ***/openapi
 endif::[]
 Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean` section and click `Try it out`. Copy the following example input into the text box:
 
-[role='command']
+[source, role="no_copy"]
 ```
 {
   "astronaut": {
