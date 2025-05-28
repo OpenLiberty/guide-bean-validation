@@ -62,7 +62,7 @@ Once your application is up and running, click the following button to check out
 endif::[]
 You see the OpenAPI user interface documenting the REST endpoints used in this guide. If you are interested in learning more about OpenAPI, read https://openliberty.io/guides/microprofile-openapi.html[Documenting RESTful APIs^]. Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean` section and click `Try it out`. Copy the following example input into the text box:
 
-[source, role="no_copy"]
+[role='command']
 ```
 {
   "astronaut": {
@@ -79,7 +79,7 @@ You see the OpenAPI user interface documenting the REST endpoints used in this g
 
 Click `Execute` and you receive the response `No Constraint Violations` because the values specified pass the constraints you will create in this guide. Now try copying the following value into the box:
 
-[source, role="no_copy"]
+[role='command']
 ```
 {
   "astronaut": {
@@ -286,7 +286,7 @@ Click the following button to check out your service by visiting the ***/openapi
 endif::[]
 Expand the `/beanvalidation/validatespacecraft POST request to validate your spacecraft bean` section and click `Try it out`. Copy the following example input into the text box:
 
-[source, role="no_copy"]
+[role='command']
 ```
 {
   "astronaut": {
