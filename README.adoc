@@ -1,4 +1,4 @@
-// Copyright (c) 2018, 2023 IBM Corporation and others.
+// Copyright (c) 2018, 2025 IBM Corporation and others.
 // Licensed under Creative Commons Attribution-NoDerivatives
 // 4.0 International (CC BY-ND 4.0)
 //  https://creativecommons.org/licenses/by-nd/4.0/
@@ -10,7 +10,7 @@
 :page-duration: 20 minutes
 :page-releasedate: 2018-08-24
 :page-description: Explore the use of bean validation to validate user input data for microservices.
-:page-tags: ['Jakarta EE']
+:page-tags: ['jakarta-ee']
 :page-permalink: /guides/{projectid}
 :page-related-guides: ['cdi-intro']
 :common-includes: https://raw.githubusercontent.com/OpenLiberty/guides-common/prod
@@ -49,7 +49,7 @@ include::{common-includes}/gitclone.adoc[]
 // =================================================================================================
 
 [role='command']
-include::{common-includes}/twyb-intro.adoc[]
+include::{common-includes}/twyb-intro-mvnw.adoc[]
 
 // Static guide instruction
 ifndef::cloud-hosted[]
@@ -97,7 +97,7 @@ Click `Execute` and you receive the response `No Constraint Violations` because 
 This time you receive `Constraint Violation Found: must be greater than or equal to 18` as a response because the age specified was under the minimum age of 18. Try other combinations of values to get a feel for the constraints that will be defined in this guide.
 
 [role='command']
-include::{common-includes}/twyb-end.adoc[]
+include::{common-includes}/twyb-end-mvnw.adoc[]
 
 // ==================================================================================
 // Applying constraints on the JavaBeans
@@ -113,7 +113,7 @@ cd /home/project/guide-bean-validation/start
 endif::[]
 
 [role='command']
-include::{common-includes}/devmode-lmp33-start.adoc[]
+include::{common-includes}/devmode-mvnw-start.adoc[]
 
 First, create the JavaBeans to be constrained. 
 [role="code_command hotspot file=0", subs="quotes"] 
