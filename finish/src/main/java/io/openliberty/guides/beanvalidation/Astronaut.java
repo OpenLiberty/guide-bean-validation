@@ -11,6 +11,7 @@
 // end::copyright[]
 package io.openliberty.guides.beanvalidation;
 
+import java.io.Serial;
 import java.io.Serializable;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -20,6 +21,7 @@ import jakarta.validation.constraints.Email;
 // tag::Astronaut[]
 public class Astronaut implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     // tag::not-blank[]

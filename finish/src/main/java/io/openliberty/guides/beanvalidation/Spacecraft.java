@@ -11,6 +11,7 @@
 // end::copyright[]
 package io.openliberty.guides.beanvalidation;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.HashMap;
@@ -28,6 +29,7 @@ import jakarta.validation.Valid;
 // tag::Spacecraft[]
 public class Spacecraft implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     // tag::Valid[]
